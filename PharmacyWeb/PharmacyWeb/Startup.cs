@@ -29,10 +29,11 @@ namespace PharmacyWeb
             services.AddControllersWithViews();
 
             services.AddDbContext<PharmacyWebDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("ConnectionStr")));
+                options.UseSqlServer(Configuration.GetConnectionString("ConnectionStr")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>().AddRoles<IdentityRole>()
-           .AddEntityFrameworkStores<PharmacyWebDbContext>();
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<PharmacyWebDbContext>();
 
         }
 

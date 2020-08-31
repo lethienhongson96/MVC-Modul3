@@ -149,7 +149,6 @@ namespace PharmacyWeb.Controllers
         [HttpGet]
         public IActionResult Edit(string id)
         {
-
             var User = _userManager.FindByIdAsync(id).Result;
             var address = _context.Addresses.ToList().Find(el => el.Address_Id == User.Address_Id);
 

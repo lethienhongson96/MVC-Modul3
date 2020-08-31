@@ -39,13 +39,16 @@
                 <td>@item.PhoneNumber</td>
 
                 <td>
-                    @ProvinceList.Find(el => el.Id == AddressList.Find(x => x.Address_Id == item.Address_Id).Province).Name
+                    @ProvinceList.Find(el => el.Id == AddressList.Find(x =>
+                        x.Address_Id == item.Address_Id).Province).Name
                 </td>
                 <td>
-                    @DistrictList.Find(el => el.Id == AddressList.Find(x => x.Address_Id == item.Address_Id).District).Name
+                    @DistrictList.Find(el => el.Id == AddressList.Find(x =>
+                        x.Address_Id == item.Address_Id).District).Name
                 </td>
                 <td>
-                    @WardList.Find(el => el.Id == AddressList.Find(x => x.Address_Id == item.Address_Id).Ward).Name
+                    @WardList.Find(el => el.Id == AddressList.Find(x =>
+                        x.Address_Id == item.Address_Id).Ward).Name
                 </td>
                 <td>
                     @_context.Addresses.ToList().Find(el => el.Address_Id == item.Address_Id).HouseNum

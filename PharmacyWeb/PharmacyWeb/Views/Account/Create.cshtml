@@ -1,5 +1,7 @@
 ﻿@model PharmacyWeb.ViewModel.ModelForCreate
+
 @inject PharmacyWebDbContext context;
+
 @{
 }
 
@@ -13,7 +15,7 @@
             </div>
             <div class="panel-body">
                 <form role="form" enctype="multipart/form-data" asp-controller="Account" asp-action="Create" method="post">
-                    <div class="alert alert-danger">
+                    <div class="text-danger">
                         <div asp-validation-summary="All"></div>
                     </div>
                     <div class="form-group">
@@ -41,22 +43,19 @@
 
                     <div class="row">
                         <div class="col-xs-12 col-sm-4 col-md-4">
-                            <div class="form-group">
-                                @Html.DropDownListFor(m => m.Province, new SelectList(context.Province.ToList(), "Id", "Name"),
-           "Tỉnh/Thành phố", new { @class = "form-control" })
-                            </div>
+                                @Html.DropDownListFor(m =>
+                                    m.Province, new SelectList(context.Province.ToList(), "Id", "Name"),
+                                    "Tỉnh/Thành phố", new { @class = "form-control" })
                         </div>
                         <div class="col-xs-12 col-sm-4 col-md-4">
-                            <div class="form-group">
-                                @Html.DropDownListFor(m => m.District, new SelectList(context.District.ToList(), "Id", "Name"),
-           "Quận/Huyện", new { @class = "form-control" })
-                            </div>
+                                @Html.DropDownListFor(m =>
+                                    m.District, new SelectList(context.District.ToList(), "Id", "Name"),
+                                    "Quận/Huyện", new { @class = "form-control" })
                         </div>
                         <div class="col-xs-12 col-sm-4 col-md-4">
-                            <div class="form-group">
-                                @Html.DropDownListFor(m => m.Ward, new SelectList(context.Ward.ToList(), "Id", "Name"),
-          "Xã/Phường", new { @class = "form-control" })
-                            </div>
+                                @Html.DropDownListFor(m =>
+                                    m.Ward, new SelectList(context.Ward.ToList(), "Id", "Name"),
+                                    "Xã/Phường", new { @class = "form-control" })
                         </div>
                     </div>
                     <div class="form-group">
@@ -65,7 +64,7 @@
                     </div>
                     <div class="form-group">
                         <label class="text-info">Số điện thoại</label>
-                        <input type="number" name="display_name" id="display_name" class="form-control " placeholder="Số Điện Thoại" asp-for="PhoneNum">
+                        <input type="number" class="form-control" placeholder="Số Điện Thoại" asp-for="PhoneNum">
                     </div>
                     <div class="form-group">
                         <label class="text-info">Avatar</label>

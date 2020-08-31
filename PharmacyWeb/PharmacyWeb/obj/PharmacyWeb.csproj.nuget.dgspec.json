@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\OOP_Modul2_C#\\PharmacyWeb\\PharmacyWeb\\PharmacyWeb.csproj": {}
+    "D:\\MVC-Modul3\\PharmacyWeb\\PharmacyWeb\\PharmacyWeb.csproj": {}
   },
   "projects": {
-    "D:\\OOP_Modul2_C#\\PharmacyWeb\\PharmacyWeb\\PharmacyWeb.csproj": {
+    "D:\\MVC-Modul3\\PharmacyWeb\\PharmacyWeb\\PharmacyWeb.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\OOP_Modul2_C#\\PharmacyWeb\\PharmacyWeb\\PharmacyWeb.csproj",
+        "projectUniqueName": "D:\\MVC-Modul3\\PharmacyWeb\\PharmacyWeb\\PharmacyWeb.csproj",
         "projectName": "PharmacyWeb",
-        "projectPath": "D:\\OOP_Modul2_C#\\PharmacyWeb\\PharmacyWeb\\PharmacyWeb.csproj",
+        "projectPath": "D:\\MVC-Modul3\\PharmacyWeb\\PharmacyWeb\\PharmacyWeb.csproj",
         "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "D:\\OOP_Modul2_C#\\PharmacyWeb\\PharmacyWeb\\obj\\",
+        "outputPath": "D:\\MVC-Modul3\\PharmacyWeb\\PharmacyWeb\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",

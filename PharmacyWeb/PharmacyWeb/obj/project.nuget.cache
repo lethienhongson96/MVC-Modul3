@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "i1Emshlm/K6p7GIrAyH3J1j5cCuE3uf429f08rTq0yLovGIAK59lqTGUdHVYdtmUfum7afX0oCxydI0hwd4r6Q==",
+  "dgSpecHash": "IVaWmXl9oEjqWTWuZ0XtNUQwMmKLOmsB9GyuchFDF7zko6VXz7rtrjsFpG+ZuOJwE46gTGLqSnbsDluNpLmTiQ==",
   "success": true,
-  "projectFilePath": "D:\\OOP_Modul2_C#\\PharmacyWeb\\PharmacyWeb\\PharmacyWeb.csproj",
+  "projectFilePath": "D:\\MVC-Modul3\\PharmacyWeb\\PharmacyWeb\\PharmacyWeb.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\PC\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.7\\microsoft.aspnetcore.cryptography.internal.3.1.7.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.7\\microsoft.aspnetcore.cryptography.keyderivation.3.1.7.nupkg.sha512",
