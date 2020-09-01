@@ -1,0 +1,38 @@
+﻿@model List<StoreManagement.Models.Entities.Category>
+
+@inject StoreDbContext context;
+@{
+    var ProductList = context.Products.ToList();
+}
+
+<table id="example" class="table table-striped table-bordered" style="width:100%">
+    <thead>
+        <tr>
+            <th>#id</th>
+            <th>Name</th>
+            <th>Status</th>
+            <th>List Product</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Status</td>
+                <td>
+                    <select>
+                        @foreach (var Product in ProductList.FindAll(x => x.CategoryId == item.Id))
+                        {
+                            <option>@Product.Name</option>
+                        }
+                    </select>
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+    </tfoot>
+</table>
