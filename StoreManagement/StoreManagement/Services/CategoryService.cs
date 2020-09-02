@@ -26,5 +26,20 @@ namespace StoreManagement.Services
         {
             return (_context.Categories.ToList());
         }
+
+        public Category GetCategoryById(int id)
+        {
+            return _context.Categories.ToList().Find(el=>el.Id==id);
+        }
+
+        public int UpdateCategory(Category category)
+        {
+            if (category==null)
+            {
+                return -1;
+            }
+            _context.Update(category);
+            return _context.SaveChanges();
+        }
     }
 }

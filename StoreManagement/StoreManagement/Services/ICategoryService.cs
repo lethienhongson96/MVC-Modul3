@@ -11,5 +11,9 @@ namespace StoreManagement.Services
         int CreateCategory(Category category);
 
         IEnumerable<Category> GetCategories();
+
+        Category GetCategoryById(int id);
+
+        int UpdateCategory(Category category);
     }
 }

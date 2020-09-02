@@ -37,5 +37,29 @@ namespace StoreManagement.Controllers
             }
             return View(category);
         }
+
+        [HttpGet]
+        public IActionResult Edit(int id) => View(categoryService.GetCategoryById(id));
+
+        [HttpPost]
+        public IActionResult Edit(Category category)
+        {
+            if (ModelState.IsValid)
+            {
+                var FindCategory = categoryService.GetCategoryById(category.Id);
+
+                FindCategory.Name = category.Name;
+                FindCategory.Status = category.Status;
+                FindCategory.Products = category.Products;
+            }
+
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult WatchProducts(int id)
+        {
+            return View(categoryService.GetCategoryById(id));
+        }
     }
 }
