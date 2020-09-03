@@ -1,4 +1,6 @@
-﻿using StoreManagement.Models.Entities;
+﻿using Microsoft.AspNetCore.Http;
+using StoreManagement.Models.Entities;
+using StoreManagement.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +10,16 @@ namespace StoreManagement.Services
 {
     public interface IProductService
     {
-        int CreateProduct(Product product);
+        int CreateProduct(CreateProductView productView);
+
+        string UploadedFile(IFormFile formFile);
+
+        List<Product> GetProductList();
+
+        int DeleteProduct(int id);
+
+        EditProductView FindProductToView(int id);
+
+        int UpdateProduct(EditProductView productView);
     }
 }

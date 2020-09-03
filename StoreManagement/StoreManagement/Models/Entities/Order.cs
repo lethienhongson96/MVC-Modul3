@@ -11,5 +11,8 @@ namespace StoreManagement.Models.Entities
         public int Id { get; set; }
         public PayStatus PayStatus { get; set; }
         public DateTime CreateAt { get; set; }
+        public DateTime ShipperDate { get; set; }
+
+        public ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

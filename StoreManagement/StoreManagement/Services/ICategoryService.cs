@@ -15,5 +15,7 @@ namespace StoreManagement.Services
         Category GetCategoryById(int id);
 
         int UpdateCategory(Category category);
+
+        int DeleteCategory(int id);
     }
 }

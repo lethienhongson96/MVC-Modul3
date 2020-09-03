@@ -22,6 +22,19 @@ namespace StoreManagement.Services
             return (_context.SaveChanges());
         }
 
+        public int DeleteCategory(int id)
+        {
+            var category = _context.Categories.FirstOrDefault(el => el.Id == id);
+
+            if (category != null)
+            {
+                _context.Categories.Remove(category);
+
+                return _context.SaveChanges();
+            }
+            return -1;
+        }
+
         public IEnumerable<Category> GetCategories()
         {
             return (_context.Categories.ToList());
@@ -38,7 +51,13 @@ namespace StoreManagement.Services
             {
                 return -1;
             }
-            _context.Update(category);
+            var FindCategory = GetCategoryById(category.Id);
+
+            FindCategory.Name = category.Name;
+            FindCategory.Status = category.Status;
+            FindCategory.Products = category.Products;
+
+            _context.Update(FindCategory);
             return _context.SaveChanges();
         }
     }

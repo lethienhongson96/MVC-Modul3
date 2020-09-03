@@ -10,12 +10,14 @@ namespace StoreManagement.Models.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public double Price { get; set; }
+        public double QuantityPerUnit { get; set; }
         public DateTime CreateAt { get; set; }
         public string ImagePath { get; set; }
         public Status Status { get; set; }
 
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+
+        public ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

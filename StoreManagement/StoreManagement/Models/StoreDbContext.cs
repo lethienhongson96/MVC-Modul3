@@ -17,6 +17,8 @@ namespace StoreManagement.Models
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories{ get; set; }
+        public DbSet<Order> Orders{ get; set; }
+        public DbSet<OrderDetail> OrderDetails{ get; set; }
 
         public StoreDbContext(DbContextOptions<StoreDbContext> options) : base(options)
         {
@@ -28,6 +30,8 @@ namespace StoreManagement.Models
 
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new OrderConfiguration());
+            modelBuilder.ApplyConfiguration(new OrderDetailConfiguration());
         }
     }
 }

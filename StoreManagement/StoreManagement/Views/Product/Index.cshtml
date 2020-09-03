@@ -1,0 +1,54 @@
+﻿@model List<StoreManagement.Models.Entities.Product>
+
+@inject StoreDbContext context;
+@{
+
+}
+
+<link href="~/lib/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+<a asp-action="Create" asp-controller="Product">Create</a>
+
+<table class="table" id="ProductIndex">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Create At</th>
+            <th scope="col">Image</th>
+            <th scope="col">Status</th>
+            <th scope="col">Category</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.QuantityPerUnit</td>
+                <td>@item.CreateAt</td>
+                <td>
+                    <img src="~/images/@item.ImagePath" alt="Alternate Text" style="width:50px;height:50px"
+                         asp-append-version="true" />
+                </td>
+                <td>@item.Status</td>
+                <td>@context.Categories.FirstOrDefault(el => el.Id == item.CategoryId).Name</td>
+
+                <td>
+                    <a asp-action="Edit" asp-controller="Product" asp-route-id="@item.Id">Edit</a>
+
+                    <a href="javascript:void(0)" class="text-danger" onclick="Product.delete(@item.Id)">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts{
+    <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
+
+    <script src="~/lib/bootbox/bootbox.min.js"></script>
+    <script src="~/js/Product.js" asp-append-version="true"></script>
+}

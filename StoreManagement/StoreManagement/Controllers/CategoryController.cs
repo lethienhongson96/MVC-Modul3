@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using StoreManagement.Models.Entities;
 using StoreManagement.Services;
 
@@ -10,16 +6,16 @@ namespace StoreManagement.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ICategoryService categoryService;
+        private readonly ICategoryService _categoryService;
 
         public CategoryController(ICategoryService categoryService)
         {
-            this.categoryService = categoryService;
+            this._categoryService = categoryService;
         }
 
         public IActionResult Index()
         {
-            return View(categoryService.GetCategories());
+            return View(_categoryService.GetCategories());
         }
 
         [HttpGet]
@@ -30,27 +26,34 @@ namespace StoreManagement.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (categoryService.CreateCategory(category) > 0)
+                if (_categoryService.CreateCategory(category) > 0)
                 {
                     return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "some thing wrong");
                 }
             }
             return View(category);
         }
 
         [HttpGet]
-        public IActionResult Edit(int id) => View(categoryService.GetCategoryById(id));
+        public IActionResult Edit(int id) => View(_categoryService.GetCategoryById(id));
 
         [HttpPost]
         public IActionResult Edit(Category category)
         {
             if (ModelState.IsValid)
             {
-                var FindCategory = categoryService.GetCategoryById(category.Id);
-
-                FindCategory.Name = category.Name;
-                FindCategory.Status = category.Status;
-                FindCategory.Products = category.Products;
+                if (_categoryService.UpdateCategory(category) > 0)
+                {
+                    return RedirectToAction("Index","Category");
+                }
+                else
+                {
+                    ModelState.AddModelError("","some thing wrong");
+                }
             }
 
             return View();
@@ -59,7 +62,14 @@ namespace StoreManagement.Controllers
         [HttpGet]
         public IActionResult WatchProducts(int id)
         {
-            return View(categoryService.GetCategoryById(id));
+            return View(_categoryService.GetCategoryById(id));
+        }
+
+        [Route("/Category/Delete/{id}")]
+        public IActionResult Delete(int id)
+        {
+            var result = _categoryService.DeleteCategory(id);
+            return Json(new { result });
         }
     }
 }
