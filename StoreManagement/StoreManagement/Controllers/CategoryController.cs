@@ -8,15 +8,11 @@ namespace StoreManagement.Controllers
     {
         private readonly ICategoryService _categoryService;
 
-        public CategoryController(ICategoryService categoryService)
-        {
+        public CategoryController(ICategoryService categoryService) =>
             this._categoryService = categoryService;
-        }
 
-        public IActionResult Index()
-        {
-            return View(_categoryService.GetCategories());
-        }
+        public IActionResult Index() =>
+            View(_categoryService.GetCategories());
 
         [HttpGet]
         public IActionResult Create() => View();
@@ -27,13 +23,9 @@ namespace StoreManagement.Controllers
             if (ModelState.IsValid)
             {
                 if (_categoryService.CreateCategory(category) > 0)
-                {
-                    return RedirectToAction("Index", "Home");
-                }
+                    return RedirectToAction("Index", "Category");
                 else
-                {
                     ModelState.AddModelError("", "some thing wrong");
-                }
             }
             return View(category);
         }
@@ -47,23 +39,17 @@ namespace StoreManagement.Controllers
             if (ModelState.IsValid)
             {
                 if (_categoryService.UpdateCategory(category) > 0)
-                {
-                    return RedirectToAction("Index","Category");
-                }
+                    return RedirectToAction("Index", "Category");
                 else
-                {
-                    ModelState.AddModelError("","some thing wrong");
-                }
+                    ModelState.AddModelError("", "some thing wrong");
             }
 
             return View();
         }
 
         [HttpGet]
-        public IActionResult WatchProducts(int id)
-        {
-            return View(_categoryService.GetCategoryById(id));
-        }
+        public IActionResult WatchProducts(int id) =>
+             View(_categoryService.GetCategoryById(id));
 
         [Route("/Category/Delete/{id}")]
         public IActionResult Delete(int id)

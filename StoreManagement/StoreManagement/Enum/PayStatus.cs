@@ -7,7 +7,7 @@ namespace StoreManagement.Enum
 {
     public enum PayStatus
     {
-        Pay,
+        unpaid,
         Paid
     }
 }

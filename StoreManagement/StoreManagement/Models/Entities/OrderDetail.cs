@@ -16,7 +16,7 @@ namespace StoreManagement.Models.Entities
 
         public int Quantity { get; set; }
         public double Discount{ get; set; }
-        public double Price { get; set; }
+        public double UnitPrice { get; set; }
         public PayStatus PayStatus{ get; set; }
     }
 }

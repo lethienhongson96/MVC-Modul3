@@ -88,3 +88,6 @@ D:\MVC-Modul3\StoreManagement\StoreManagement\obj\Debug\netcoreapp3.1\Razor\View
 D:\MVC-Modul3\StoreManagement\StoreManagement\obj\Debug\netcoreapp3.1\Razor\Views\Product\Index.cshtml.g.cs
 D:\MVC-Modul3\StoreManagement\StoreManagement\bin\Debug\netcoreapp3.1\libman.json
 D:\MVC-Modul3\StoreManagement\StoreManagement\obj\Debug\netcoreapp3.1\Razor\Views\Product\Edit.cshtml.g.cs
+D:\MVC-Modul3\StoreManagement\StoreManagement\obj\Debug\netcoreapp3.1\Razor\Views\Order\Create.cshtml.g.cs
+D:\MVC-Modul3\StoreManagement\StoreManagement\obj\Debug\netcoreapp3.1\Razor\Views\Order\Index.cshtml.g.cs
+D:\MVC-Modul3\StoreManagement\StoreManagement\obj\Debug\netcoreapp3.1\Razor\Views\Order\Edit.cshtml.g.cs

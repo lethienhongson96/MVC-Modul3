@@ -43,6 +43,11 @@ namespace StoreManagement.Services
 
             if (product != null)
             {
+                if (!string.IsNullOrEmpty(product.ImagePath))
+                {
+                    string DelPath = Path.Combine(_webHostEnvironment.WebRootPath, "Images", product.ImagePath);
+                    File.Delete(DelPath);
+                }
                 _context.Products.Remove(product);
 
                 return _context.SaveChanges();
