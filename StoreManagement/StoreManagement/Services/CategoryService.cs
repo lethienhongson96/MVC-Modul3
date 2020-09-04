@@ -1,14 +1,13 @@
 ﻿using StoreManagement.Models;
 using StoreManagement.Models.Entities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace StoreManagement.Services
 {
     public class CategoryService : ICategoryService
     {
+        public const int DefaultCategoryId= 6;
         private readonly StoreDbContext _context;
 
         public CategoryService(StoreDbContext context)
@@ -28,6 +27,11 @@ namespace StoreManagement.Services
 
             if (category != null)
             {
+                List<Product> Products = _context.Products.ToList().FindAll(el => el.CategoryId == category.Id);
+
+                Products.ForEach(el => el.CategoryId = DefaultCategoryId);
+                _context.UpdateRange(Products);
+
                 _context.Categories.Remove(category);
 
                 return _context.SaveChanges();
@@ -42,12 +46,12 @@ namespace StoreManagement.Services
 
         public Category GetCategoryById(int id)
         {
-            return _context.Categories.ToList().Find(el=>el.Id==id);
+            return _context.Categories.ToList().Find(el => el.Id == id);
         }
 
         public int UpdateCategory(Category category)
         {
-            if (category==null)
+            if (category == null)
             {
                 return -1;
             }

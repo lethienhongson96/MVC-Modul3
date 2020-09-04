@@ -15,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\OrderDetail\" />
     <Folder Include="wwwroot\Images\" />
   </ItemGroup>
 

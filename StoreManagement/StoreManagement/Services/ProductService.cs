@@ -61,13 +61,13 @@ namespace StoreManagement.Services
 
             var productview = new EditProductView()
             {
-                id= product.Id,
-                Name=product.Name,
-                Price=product.QuantityPerUnit,
-                CreateAt=product.CreateAt,
-                Status=product.Status,
-                CategoryId=product.CategoryId,
-                imgPath=product.ImagePath
+                id = product.Id,
+                Name = product.Name,
+                Price = product.QuantityPerUnit,
+                CreateAt = product.CreateAt,
+                Status = product.Status,
+                CategoryId = product.CategoryId,
+                imgPath = product.ImagePath
             };
 
             return productview;
@@ -80,7 +80,7 @@ namespace StoreManagement.Services
 
         public int UpdateProduct(EditProductView productView)
         {
-            var product = _context.Products.FirstOrDefault(el=>el.Id==productView.id);
+            var product = _context.Products.FirstOrDefault(el => el.Id == productView.id);
 
             product.Name = productView.Name;
             product.CategoryId = productView.CategoryId;
@@ -88,7 +88,7 @@ namespace StoreManagement.Services
             product.QuantityPerUnit = productView.Price;
             product.Status = productView.Status;
 
-            if (productView.IformfilePath!=null)
+            if (productView.IformfilePath != null)
             {
                 product.ImagePath = UploadedFile(productView.IformfilePath);
 
@@ -112,10 +112,8 @@ namespace StoreManagement.Services
                 string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Images");
                 uniqueFileName = Guid.NewGuid().ToString() + "_" + formFile.FileName;
                 string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    formFile.CopyTo(fileStream);
-                }
+                using var fileStream = new FileStream(filePath, FileMode.Create);
+                formFile.CopyTo(fileStream);
             }
             return uniqueFileName;
         }

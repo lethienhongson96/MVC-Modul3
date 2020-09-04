@@ -74,8 +74,6 @@ D:\MVC-Modul3\StoreManagement\StoreManagement\bin\Debug\netcoreapp3.1\StoreManag
 D:\MVC-Modul3\StoreManagement\StoreManagement\bin\Debug\netcoreapp3.1\StoreManagement.Views.dll
 D:\MVC-Modul3\StoreManagement\StoreManagement\bin\Debug\netcoreapp3.1\StoreManagement.Views.pdb
 D:\MVC-Modul3\StoreManagement\StoreManagement\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
-D:\MVC-Modul3\StoreManagement\StoreManagement\obj\Debug\netcoreapp3.1\StoreManagement.csproj.CoreCompileInputs.cache
-D:\MVC-Modul3\StoreManagement\StoreManagement\obj\Debug\netcoreapp3.1\StoreManagement.MvcApplicationPartsAssemblyInfo.cache
 D:\MVC-Modul3\StoreManagement\StoreManagement\obj\Debug\netcoreapp3.1\StoreManagement.Views.pdb
 D:\MVC-Modul3\StoreManagement\StoreManagement\obj\Debug\netcoreapp3.1\StoreManagement.dll
 D:\MVC-Modul3\StoreManagement\StoreManagement\obj\Debug\netcoreapp3.1\StoreManagement.pdb
@@ -91,3 +89,6 @@ D:\MVC-Modul3\StoreManagement\StoreManagement\obj\Debug\netcoreapp3.1\Razor\View
 D:\MVC-Modul3\StoreManagement\StoreManagement\obj\Debug\netcoreapp3.1\Razor\Views\Order\Create.cshtml.g.cs
 D:\MVC-Modul3\StoreManagement\StoreManagement\obj\Debug\netcoreapp3.1\Razor\Views\Order\Index.cshtml.g.cs
 D:\MVC-Modul3\StoreManagement\StoreManagement\obj\Debug\netcoreapp3.1\Razor\Views\Order\Edit.cshtml.g.cs
+D:\MVC-Modul3\StoreManagement\StoreManagement\obj\Debug\netcoreapp3.1\StoreManagement.csproj.CoreCompileInputs.cache
+D:\MVC-Modul3\StoreManagement\StoreManagement\obj\Debug\netcoreapp3.1\StoreManagement.MvcApplicationPartsAssemblyInfo.cache
+D:\MVC-Modul3\StoreManagement\StoreManagement\obj\Debug\netcoreapp3.1\Razor\Views\OrderDetail\Index.cshtml.g.cs
