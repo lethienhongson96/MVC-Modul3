@@ -41,7 +41,7 @@ namespace StoreManagement.Services
             if (orderDetails.Contains(FindOrderDetail))
             {
                 FindOrderDetail.Quantity += orderDetail.Quantity;
-                FindOrderDetail.UnitPrice = CalculateMoney(product.PricePerUnit, orderDetail.Discount, orderDetail.Quantity);
+                FindOrderDetail.UnitPrice += CalculateMoney(product.PricePerUnit, orderDetail.Discount, orderDetail.Quantity);
 
                 context.Update(FindOrderDetail);
             }
@@ -60,5 +60,8 @@ namespace StoreManagement.Services
 
         public Order GetOrderByid(int id) =>
             context.Orders.FirstOrDefault(el => el.Id == id);
+
+        public Product GetProductById(int id)=>
+            context.Products.FirstOrDefault(el => el.Id == id);
     }
 }

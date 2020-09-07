@@ -5,6 +5,7 @@
 }
 
 <form asp-controller="OrderDetail" asp-action="Create">
+    <div asp-validation-summary="All" class="text-danger"></div>
     <input type="hidden" asp-for="OrderId">
     <div class="form-row">
         <div class="form-group col-md-6">
@@ -28,16 +29,19 @@
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label for="inputCity">Amount</label>
+            <label for="inputCity">Quantity</label>
             <input type="number" asp-for="Quantity" class="form-control" id="Quantity">
+            <span asp-validation-for="Quantity"></span>
         </div>
         <div class="form-group col-md-4">
             <label for="inputState">Discount</label>
-            <input type="number" asp-for="Discount" class="form-control" id="Discount" >
+            <input type="number" asp-for="Discount" class="form-control" id="Discount">
+            <span asp-validation-for="Discount"></span>
         </div>
         <div class="form-group col-md-2">
             <label for="inputZip">Price</label>
             <input type="text" class="form-control" asp-for="UnitPrice" disabled id="Price">
+            <span asp-validation-for="UnitPrice"></span>
         </div>
     </div>
     <div class="form-group">
@@ -47,33 +51,7 @@
     </div>
     <button type="submit" class="btn btn-primary">Create</button>
 </form>
-
-
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script>
-    $(function () {
-        $("#Category").change(function () {
-            var url = '@Url.Content("~/")' + "OrderDetail/GetProductsByCategoryId";
-            var ddlsource = "#Category";
-            $.getJSON(url, { id: $(ddlsource).val() }, function (data) {
-                var items = '';
-                $("#Product").empty();
-                $.each(data, function (i, row) {
-                    items += "<option value='" + row.value + "'>" + row.text + "</option>";
-                });
-                $("#Product").html(items);
-            });
-        });
-    }
-    );
-
-    $(function () {
-        $("#Discount").change(function () {
-            var Url = '@Url.Content("~/")' + "OrderDetail/GetDiscount";
-            var Discount = "#Discount";
-            $.getJSON(Url, { id: $(Discount).val(), id1: $("#Quantity").val() }, function (data) {
-                $("#Price").val(data);
-            });
-        });
-    });
-</script>
+    
+@section Scripts{
+    <script src="~/js/OrderDetail.js"></script>
+}

@@ -17,5 +17,7 @@ namespace StoreManagement.Services
         List<Product> GetListProductByCategoryId(int id);
 
         double CalculateMoney(double PriceProduct,double Percent,int Quantity);
+
+        Product GetProductById(int id);
     }
 }

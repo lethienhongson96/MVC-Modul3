@@ -7,7 +7,7 @@
 <a asp-action="Create" asp-controller="Product">Create</a>
 
 <table class="table" id="ProductIndex">
-    <thead class="thead-dark">
+    <thead class="thead-dark" style="text-align:center">
         <tr>
             <th scope="col">Name</th>
             <th scope="col">Price</th>
@@ -18,7 +18,7 @@
             <th scope="col">Action</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody style="text-align:center">
         @foreach (var item in Model)
         {
             <tr>

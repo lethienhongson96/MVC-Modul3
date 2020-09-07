@@ -32,8 +32,13 @@ namespace StoreManagement.Controllers
         [HttpPost]
         public IActionResult Create(OrderDetail orderDetail)
         {
-            if (orderDetailService.CreateOrderDetail(orderDetail) > 0)
-                return RedirectToAction("Index", "Order");
+            if (ModelState.IsValid)
+            {
+                if (orderDetailService.CreateOrderDetail(orderDetail) > 0 && orderDetail.Quantity>0)
+                    return RedirectToAction("Index", "Order");
+                else
+                    ModelState.AddModelError("", "Quantity not Null");
+            }
             else
                 ModelState.AddModelError("", "Some thing wrong");
 
@@ -43,9 +48,19 @@ namespace StoreManagement.Controllers
         public JsonResult GetProductsByCategoryId(int id) =>
              Json(new SelectList(orderDetailService.GetListProductByCategoryId(id), "Id", "Name"));
 
-        public JsonResult GetDiscount(int id,int id1)
+        [Route("/OrderDetail/GetPrice/{ProductId}/{Discount}/{Quantity}")]
+        public JsonResult GetPrice(int ProductId, int Discount, int Quantity)
         {
-            return Json(id1);
+            Product product = orderDetailService.GetProductById(ProductId);
+
+            return Json(orderDetailService.CalculateMoney(product.PricePerUnit,Discount,Quantity));
+        }
+
+        public JsonResult DefaultByProductId(int id)
+        {
+            Product product = orderDetailService.GetProductById(id);
+
+            return Json(product.PricePerUnit);
         }
     }
 }
