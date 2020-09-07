@@ -92,3 +92,5 @@ D:\MVC-Modul3\StoreManagement\StoreManagement\obj\Debug\netcoreapp3.1\Razor\View
 D:\MVC-Modul3\StoreManagement\StoreManagement\obj\Debug\netcoreapp3.1\StoreManagement.csproj.CoreCompileInputs.cache
 D:\MVC-Modul3\StoreManagement\StoreManagement\obj\Debug\netcoreapp3.1\StoreManagement.MvcApplicationPartsAssemblyInfo.cache
 D:\MVC-Modul3\StoreManagement\StoreManagement\obj\Debug\netcoreapp3.1\Razor\Views\OrderDetail\Index.cshtml.g.cs
+D:\MVC-Modul3\StoreManagement\StoreManagement\obj\Debug\netcoreapp3.1\Razor\Views\OrderDetail\WatchOrderDetail.cshtml.g.cs
+D:\MVC-Modul3\StoreManagement\StoreManagement\obj\Debug\netcoreapp3.1\Razor\Views\OrderDetail\Create.cshtml.g.cs

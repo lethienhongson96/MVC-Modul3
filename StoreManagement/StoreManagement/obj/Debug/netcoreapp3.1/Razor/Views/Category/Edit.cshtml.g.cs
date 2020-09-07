@@ -26,8 +26,22 @@ using StoreManagement.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "D:\MVC-Modul3\StoreManagement\StoreManagement\Views\_ViewImports.cshtml"
+using StoreManagement.Models.Entities;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "D:\MVC-Modul3\StoreManagement\StoreManagement\Views\_ViewImports.cshtml"
+using StoreManagement.Enum;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"793f1a034df5cc97017753e5a8a69c6ef9430b12", @"/Views/Category/Edit.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f41f201375059d09f257074286663a35831c0600", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5d15e468b41b2f3ecd7399ee5db750d454a110ff", @"/Views/_ViewImports.cshtml")]
     public class Views_Category_Edit : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<StoreManagement.Models.Entities.Category>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("type", "text", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -63,9 +77,9 @@ using StoreManagement.Models;
         {
             WriteLiteral("\r\n");
             WriteLiteral("\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "793f1a034df5cc97017753e5a8a69c6ef9430b124793", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "793f1a034df5cc97017753e5a8a69c6ef9430b125166", async() => {
                 WriteLiteral("\r\n    <div class=\"form-group row\">\r\n        <label class=\"col-sm-2 col-form-label\">Name</label>\r\n        <div class=\"col-sm-10\">\r\n            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "793f1a034df5cc97017753e5a8a69c6ef9430b125203", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "793f1a034df5cc97017753e5a8a69c6ef9430b125576", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -89,7 +103,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n        </div>\r\n    </div>\r\n    <div class=\"form-group row\">\r\n        <label class=\"col-sm-2 col-form-label\">Active</label>\r\n        <div class=\"col-sm-10\">\r\n            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "793f1a034df5cc97017753e5a8a69c6ef9430b127169", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "793f1a034df5cc97017753e5a8a69c6ef9430b127542", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.SelectTagHelper>();

@@ -26,8 +26,22 @@ using StoreManagement.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "D:\MVC-Modul3\StoreManagement\StoreManagement\Views\_ViewImports.cshtml"
+using StoreManagement.Models.Entities;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "D:\MVC-Modul3\StoreManagement\StoreManagement\Views\_ViewImports.cshtml"
+using StoreManagement.Enum;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a4a94c9543737a0c2e52aa23642b5403a96ca4ea", @"/Views/Category/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f41f201375059d09f257074286663a35831c0600", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5d15e468b41b2f3ecd7399ee5db750d454a110ff", @"/Views/_ViewImports.cshtml")]
     public class Views_Category_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<List<StoreManagement.Models.Entities.Category>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "Create", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -71,7 +85,7 @@ using StoreManagement.Models;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a4a94c9543737a0c2e52aa23642b5403a96ca4ea5158", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a4a94c9543737a0c2e52aa23642b5403a96ca4ea5531", async() => {
                 WriteLiteral("Create");
             }
             );
@@ -127,7 +141,7 @@ using StoreManagement.Models;
 #line hidden
 #nullable disable
             WriteLiteral("</td>\r\n                <td>\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a4a94c9543737a0c2e52aa23642b5403a96ca4ea7606", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a4a94c9543737a0c2e52aa23642b5403a96ca4ea7979", async() => {
                 WriteLiteral("\r\n                        ");
 #nullable restore
 #line 28 "D:\MVC-Modul3\StoreManagement\StoreManagement\Views\Category\Index.cshtml"
@@ -180,7 +194,7 @@ WriteAttributeValue("", 1020, item.Id, 1020, 8, false);
             WriteAttributeValue("", 1028, ")", 1028, 1, true);
             EndWriteAttribute();
             WriteLiteral(">Delete</a>\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a4a94c9543737a0c2e52aa23642b5403a96ca4ea10984", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a4a94c9543737a0c2e52aa23642b5403a96ca4ea11357", async() => {
                 WriteLiteral("Edit");
             }
             );
@@ -223,7 +237,7 @@ WriteAttributeValue("", 1020, item.Id, 1020, 8, false);
             WriteLiteral("    </tbody>\r\n    <tfoot>\r\n    </tfoot>\r\n</table>\r\n\r\n");
             DefineSection("Scripts", async() => {
                 WriteLiteral("\r\n    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a4a94c9543737a0c2e52aa23642b5403a96ca4ea13766", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a4a94c9543737a0c2e52aa23642b5403a96ca4ea14139", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

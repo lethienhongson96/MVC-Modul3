@@ -26,7 +26,7 @@ namespace StoreManagement.Services
             Product product = new Product()
             {
                 Name = productView.Name,
-                QuantityPerUnit = productView.Price,
+                PricePerUnit = productView.Price,
                 CreateAt = productView.CreateAt,
                 Status = productView.Status,
                 ImagePath = UploadedFile(productView.IformfilePath),
@@ -63,7 +63,7 @@ namespace StoreManagement.Services
             {
                 id = product.Id,
                 Name = product.Name,
-                Price = product.QuantityPerUnit,
+                Price = product.PricePerUnit,
                 CreateAt = product.CreateAt,
                 Status = product.Status,
                 CategoryId = product.CategoryId,
@@ -85,7 +85,7 @@ namespace StoreManagement.Services
             product.Name = productView.Name;
             product.CategoryId = productView.CategoryId;
             product.CreateAt = productView.CreateAt;
-            product.QuantityPerUnit = productView.Price;
+            product.PricePerUnit = productView.Price;
             product.Status = productView.Status;
 
             if (productView.IformfilePath != null)

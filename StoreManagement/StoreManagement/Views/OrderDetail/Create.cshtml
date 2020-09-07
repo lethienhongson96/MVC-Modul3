@@ -1,0 +1,79 @@
+﻿@model StoreManagement.Models.Entities.OrderDetail
+
+@inject StoreDbContext context;
+@{
+}
+
+<form asp-controller="OrderDetail" asp-action="Create">
+    <input type="hidden" asp-for="OrderId">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputEmail4">Category</label>
+            <select class="form-control" id="Category">
+                @foreach (var item in context.Categories.ToList())
+                {
+                    <option value="@item.Id">@item.Name</option>
+                }
+            </select>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputPassword4">Product</label>
+            <select class="form-control" asp-for="ProductId" id="Product">
+                @foreach (var item in context.Products.ToList())
+                {
+                    <option value="@item.Id">@item.Name</option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputCity">Amount</label>
+            <input type="number" asp-for="Quantity" class="form-control" id="Quantity">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputState">Discount</label>
+            <input type="number" asp-for="Discount" class="form-control" id="Discount" >
+        </div>
+        <div class="form-group col-md-2">
+            <label for="inputZip">Price</label>
+            <input type="text" class="form-control" asp-for="UnitPrice" disabled id="Price">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputAddress">Pay Status</label>
+        <select class="form-control" asp-for="PayStatus" asp-items="@Html.GetEnumSelectList<PayStatus>()">
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $(function () {
+        $("#Category").change(function () {
+            var url = '@Url.Content("~/")' + "OrderDetail/GetProductsByCategoryId";
+            var ddlsource = "#Category";
+            $.getJSON(url, { id: $(ddlsource).val() }, function (data) {
+                var items = '';
+                $("#Product").empty();
+                $.each(data, function (i, row) {
+                    items += "<option value='" + row.value + "'>" + row.text + "</option>";
+                });
+                $("#Product").html(items);
+            });
+        });
+    }
+    );
+
+    $(function () {
+        $("#Discount").change(function () {
+            var Url = '@Url.Content("~/")' + "OrderDetail/GetDiscount";
+            var Discount = "#Discount";
+            $.getJSON(Url, { id: $(Discount).val(), id1: $("#Quantity").val() }, function (data) {
+                $("#Price").val(data);
+            });
+        });
+    });
+</script>

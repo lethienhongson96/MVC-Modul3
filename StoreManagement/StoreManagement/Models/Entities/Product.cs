@@ -10,7 +10,7 @@ namespace StoreManagement.Models.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public double QuantityPerUnit { get; set; }
+        public double PricePerUnit { get; set; }
         public DateTime CreateAt { get; set; }
         public string ImagePath { get; set; }
         public Status Status { get; set; }
