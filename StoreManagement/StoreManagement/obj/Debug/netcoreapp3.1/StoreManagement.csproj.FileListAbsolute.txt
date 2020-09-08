@@ -94,3 +94,4 @@ D:\MVC-Modul3\StoreManagement\StoreManagement\obj\Debug\netcoreapp3.1\StoreManag
 D:\MVC-Modul3\StoreManagement\StoreManagement\obj\Debug\netcoreapp3.1\Razor\Views\OrderDetail\Index.cshtml.g.cs
 D:\MVC-Modul3\StoreManagement\StoreManagement\obj\Debug\netcoreapp3.1\Razor\Views\OrderDetail\WatchOrderDetail.cshtml.g.cs
 D:\MVC-Modul3\StoreManagement\StoreManagement\obj\Debug\netcoreapp3.1\Razor\Views\OrderDetail\Create.cshtml.g.cs
+D:\MVC-Modul3\StoreManagement\StoreManagement\obj\Debug\netcoreapp3.1\Razor\Views\OrderDetail\Edit.cshtml.g.cs

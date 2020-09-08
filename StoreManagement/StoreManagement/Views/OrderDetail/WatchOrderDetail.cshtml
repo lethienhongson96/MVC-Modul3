@@ -2,7 +2,7 @@
 
 @inject StoreDbContext context;
 @{
-    List<OrderDetail> orderDetails = context.OrderDetails.ToList().FindAll(el=>el.OrderId==Model.Id);
+    List<OrderDetail> orderDetails = context.OrderDetails.ToList().FindAll(el => el.OrderId == Model.Id);
 
     List<Product> products = context.Products.ToList();
 }
@@ -23,15 +23,23 @@
         @foreach (var item in orderDetails)
         {
             <tr style="text-align:center">
-                <td>@products.Find(el=>el.Id==item.ProductId).Name</td>
+                <td>@products.Find(el => el.Id == item.ProductId).Name</td>
                 <td>@item.Quantity</td>
                 <td>@item.Discount</td>
                 <td>@item.UnitPrice</td>
                 <td>@item.PayStatus</td>
-                <td></td>
+                <td>
+                    <a href="javascript:void(0)" class="text-danger"
+                       onclick="WatchOrderDetail.delete(@item.OrderId,@item.ProductId)">
+                        Delete
+                    </a>
+                    <a asp-controller="OrderDetail" asp-action="Edit"
+                       asp-route-ProductId="@item.ProductId" asp-route-OrderId="@item.OrderId">
+                        Edit
+                    </a>
+                </td>
             </tr>
         }
-
     </tbody>
     <tfoot>
         <tr style="text-align:center">
@@ -44,3 +52,5 @@
         </tr>
     </tfoot>
 </table>
+
+<script src="~/js/WatchOrderDetail.js"></script>

@@ -51,7 +51,16 @@ namespace StoreManagement.Services
 
                 context.Add(orderDetail);
             }
-               
+
+            return context.SaveChanges();
+        }
+
+        public int DeleteOrderDetail(int OrderId, int ProductId)
+        {
+            var OrderDetail = context.OrderDetails.FirstOrDefault(el =>
+                                el.OrderId == OrderId &&
+                                el.ProductId == ProductId);
+            context.Remove(OrderDetail);
             return context.SaveChanges();
         }
 
@@ -61,7 +70,21 @@ namespace StoreManagement.Services
         public Order GetOrderByid(int id) =>
             context.Orders.FirstOrDefault(el => el.Id == id);
 
-        public Product GetProductById(int id)=>
+        public OrderDetail GetOrderDetailByIds(int ProductId, int OrderId)
+        {
+            var orderdetail = context.OrderDetails.FirstOrDefault(el =>
+                                el.ProductId == ProductId &&
+                                el.OrderId == OrderId);
+            return (orderdetail);
+        }
+
+        public Product GetProductById(int id) =>
             context.Products.FirstOrDefault(el => el.Id == id);
+
+        public int UpdateOrderDetail(OrderDetail orderDetail)
+        {
+            context.Update(orderDetail);
+            return context.SaveChanges();
+        }
     }
 }

@@ -19,5 +19,10 @@ namespace StoreManagement.Services
         double CalculateMoney(double PriceProduct,double Percent,int Quantity);
 
         Product GetProductById(int id);
+
+        OrderDetail GetOrderDetailByIds(int ProductId, int OrderId);
+
+        int UpdateOrderDetail(OrderDetail orderDetail);
+        int DeleteOrderDetail(int OrderId,int ProductId);
     }
 }

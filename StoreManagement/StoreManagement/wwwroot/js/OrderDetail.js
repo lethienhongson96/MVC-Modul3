@@ -51,6 +51,18 @@ $(function () {
                     items += "<option value='" + row.value + "'>" + row.text + "</option>";
                 });
                 $("#Product").html(items);
+
+                var Productid = $("#Product").val();
+                $.ajax({
+                    url: `/OrderDetail/DefaultByProductId/${Productid}`,
+                    method: "GET",
+                    contentType: "json",
+                    success: function (data) {
+                        $("#Quantity").val(1);
+                        $("#Discount").val(0);
+                        $("#Price").val(data);
+                    }
+                });
             }
         })
     });

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using StoreManagement.Models.Entities;
 using StoreManagement.Services;
@@ -34,10 +30,10 @@ namespace StoreManagement.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (orderDetailService.CreateOrderDetail(orderDetail) > 0 && orderDetail.Quantity>0)
-                    return RedirectToAction("Index", "Order");
+                if (orderDetailService.CreateOrderDetail(orderDetail) > 0 && orderDetail.Quantity > 0)
+                    return RedirectToAction("WatchOrderDetail", "OrderDetail", orderDetailService.GetOrderByid(orderDetail.OrderId));
                 else
-                    ModelState.AddModelError("", "Quantity not Null");
+                    ModelState.AddModelError("", "Quantity is not Null");
             }
             else
                 ModelState.AddModelError("", "Some thing wrong");
@@ -53,7 +49,7 @@ namespace StoreManagement.Controllers
         {
             Product product = orderDetailService.GetProductById(ProductId);
 
-            return Json(orderDetailService.CalculateMoney(product.PricePerUnit,Discount,Quantity));
+            return Json(orderDetailService.CalculateMoney(product.PricePerUnit, Discount, Quantity));
         }
 
         public JsonResult DefaultByProductId(int id)
@@ -61,6 +57,30 @@ namespace StoreManagement.Controllers
             Product product = orderDetailService.GetProductById(id);
 
             return Json(product.PricePerUnit);
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int ProductId, int OrderId)
+        {
+            return View(orderDetailService.GetOrderDetailByIds(ProductId, OrderId));
+        }
+
+        [HttpPost]
+        public IActionResult Edit(OrderDetail orderDetail)
+        {
+            if (orderDetailService.UpdateOrderDetail(orderDetail) > 0)
+            {
+                return RedirectToAction("WatchOrderDetail", "OrderDetail", orderDetailService.GetOrderByid(orderDetail.OrderId));
+            }
+
+            return View(orderDetail);
+        }
+
+        [Route("/OrderDetail/Delete/{OrderId}/{ProductId}")]
+        public IActionResult Delete(int OrderId,int  ProductId)
+        {
+            var result = orderDetailService.DeleteOrderDetail(OrderId, ProductId);
+            return Json(new { result });
         }
     }
 }

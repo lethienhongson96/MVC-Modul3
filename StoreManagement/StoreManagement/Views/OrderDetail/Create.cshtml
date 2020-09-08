@@ -9,43 +9,37 @@
     <input type="hidden" asp-for="OrderId">
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label for="inputEmail4">Category</label>
-            <select class="form-control" id="Category">
-                @foreach (var item in context.Categories.ToList())
-                {
-                    <option value="@item.Id">@item.Name</option>
-                }
+            <label>Category</label>
+            <select class="form-control" id="Category"
+                    asp-items="@(new SelectList(context.Categories.ToList(),"Id","Name"))">
             </select>
         </div>
         <div class="form-group col-md-6">
-            <label for="inputPassword4">Product</label>
-            <select class="form-control" asp-for="ProductId" id="Product">
-                @foreach (var item in context.Products.ToList())
-                {
-                    <option value="@item.Id">@item.Name</option>
-                }
+            <label>Product</label>
+            <select class="form-control" asp-for="ProductId" id="Product" 
+                    asp-items="@(new SelectList(context.Products.ToList(),"Id","Name"))">
             </select>
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label for="inputCity">Quantity</label>
+            <label>Quantity</label>
             <input type="number" asp-for="Quantity" class="form-control" id="Quantity">
             <span asp-validation-for="Quantity"></span>
         </div>
         <div class="form-group col-md-4">
-            <label for="inputState">Discount</label>
-            <input type="number" asp-for="Discount" class="form-control" id="Discount">
+            <label>Discount</label>
+            <input type="number" asp-for="Discount" class="form-control" id="Discount" >
             <span asp-validation-for="Discount"></span>
         </div>
         <div class="form-group col-md-2">
-            <label for="inputZip">Price</label>
-            <input type="text" class="form-control" asp-for="UnitPrice" disabled id="Price">
+            <label>Price</label>
+            <input class="form-control" asp-for="UnitPrice" id="Price" readonly>
             <span asp-validation-for="UnitPrice"></span>
         </div>
     </div>
     <div class="form-group">
-        <label for="inputAddress">Pay Status</label>
+        <label>Pay Status</label>
         <select class="form-control" asp-for="PayStatus" asp-items="@Html.GetEnumSelectList<PayStatus>()">
         </select>
     </div>
