@@ -309,6 +309,9 @@ namespace StoreManagement.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<DateTime>("CreateAt")
                         .HasColumnType("datetime2");
 
@@ -319,6 +322,8 @@ namespace StoreManagement.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
 
                     b.ToTable("Orders");
                 });
@@ -490,6 +495,13 @@ namespace StoreManagement.Migrations
                     b.HasOne("StoreManagement.Models.ApplicationUser", "ApplicationUser")
                         .WithOne("Address")
                         .HasForeignKey("StoreManagement.Models.Entities.Address", "UserId");
+                });
+
+            modelBuilder.Entity("StoreManagement.Models.Entities.Order", b =>
+                {
+                    b.HasOne("StoreManagement.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany("Orders")
+                        .HasForeignKey("ApplicationUserId");
                 });
 
             modelBuilder.Entity("StoreManagement.Models.Entities.OrderDetail", b =>

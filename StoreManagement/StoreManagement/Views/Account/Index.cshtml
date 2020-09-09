@@ -1,0 +1,77 @@
+﻿@model List<ApplicationUser>
+
+@inject StoreDbContext _context;
+
+@{
+    var ProvinceList = _context.Province.ToList();
+    var DistrictList = _context.District.ToList();
+    var WardList = _context.Ward.ToList();
+    var AddressList = _context.Addresses.ToList();
+}
+
+<table id="IndexAccount" class="table table-striped table-bordered" style="width:100%">
+    <thead style="text-align:center" class="thead-dark">
+        <tr>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Province</th>
+            <th>District</th>
+            <th>Ward</th>
+            <th>House num</th>
+            <th>avatar</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody style="text-align:center">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.FullName</td>
+                <td>@item.Email</td>
+                <td>@item.PhoneNumber</td>
+                <td>
+                    @ProvinceList.Find(pro => pro.Id == AddressList.Find(add => add.Id == item.AddressId).ProvinceId).Name
+                </td>
+                <td>
+                    @DistrictList.Find(dis => dis.Id == AddressList.Find(add => add.Id == item.AddressId).DistrictId).Name
+                </td>
+                <td>
+                    @WardList.Find(war => war.Id == AddressList.Find(add => add.Id == item.AddressId).WardId).Name
+                </td>
+                <td>
+                    @_context.Addresses.ToList().Find(el => el.Id == item.AddressId).HouseNum
+                </td>
+                <td>
+                    <img src="~/Images/UserImages/@item.Avatar" alt="Alternate Text" style="width:50px;height:50px"
+                         asp-append-version="true" />
+                </td>
+                <td>
+                    <a asp-controller="Account" asp-action="Edit" asp-route-Id="@item.Id" title="Edit">
+                        Edit
+                    </a>
+                    <a href="javascript:void(0)" class="text-danger" onclick="Account.delete('@item.Id')">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot style="text-align:center" class="thead-dark">
+        <tr>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Province</th>
+            <th>District</th>
+            <th>Ward</th>
+            <th>House num</th>
+            <th>avatar</th>
+            <th>Action</th>
+        </tr>
+    </tfoot>
+</table>
+
+@section Scripts{
+    <script src="~/js/Account.js" asp-append-version="true"></script>
+}

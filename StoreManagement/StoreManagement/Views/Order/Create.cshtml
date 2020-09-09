@@ -1,6 +1,8 @@
 ﻿@model StoreManagement.Models.Entities.Order
 
+@inject Microsoft.AspNetCore.Identity.UserManager<ApplicationUser> usermanager;
 @{
+    var users = usermanager.Users.ToList();
 }
 
 <form asp-controller="Order" asp-action="Create" method="post">
@@ -20,6 +22,14 @@
         <label class="col-sm-2 col-form-label">Pay Status</label>
         <div class="col-sm-10">
             <select class="form-control" asp-for="PayStatus" asp-items="@Html.GetEnumSelectList<PayStatus>()">
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Người thanh toán</label>
+        <div class="col-sm-10">
+            <select class="form-control" asp-for="ApplicationUserId"
+                    asp-items="@(new SelectList(users,"Id","FullName"))">
             </select>
         </div>
     </div>

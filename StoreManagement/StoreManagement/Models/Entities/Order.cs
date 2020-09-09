@@ -12,5 +12,8 @@ namespace StoreManagement.Models.Entities
         public DateTime ShipperDate { get; set; }
 
         public ICollection<OrderDetail> OrderDetails { get; set; }
+
+        public string ApplicationUserId { get; set; }
+        public ApplicationUser ApplicationUser{ get; set; }
     }
 }
