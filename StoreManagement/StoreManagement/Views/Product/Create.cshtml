@@ -5,33 +5,34 @@
 }
 
 <form asp-controller="Product" asp-action="Create" enctype="multipart/form-data">
+    <div asp-validation-summary="All" class="text-danger"></div>
     <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Name</label>
+        <label class="col-sm-2 col-form-label">Tên sản phẩm</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" asp-for="Name">
         </div>
     </div>
     <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Price</label>
+        <label class="col-sm-2 col-form-label">Giá</label>
         <div class="col-sm-10">
             <input type="number" class="form-control" asp-for="Price">
         </div>
     </div>
     <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Create At</label>
+        <label class="col-sm-2 col-form-label">Ngày tạo sản phẩm</label>
         <div class="col-sm-10">
             <input type="date" class="form-control" asp-for="CreateAt">
         </div>
     </div>
     <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Active</label>
+        <label class="col-sm-2 col-form-label">trạng thái</label>
         <div class="col-sm-10">
             <select class="form-control" asp-for="Status" asp-items="@Html.GetEnumSelectList<Status>()">
             </select>
         </div>
     </div>
     <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Category</label>
+        <label class="col-sm-2 col-form-label">Danh mục</label>
         <div class="col-sm-10">
             <select class="form-control" asp-for="CategoryId">
                 @foreach (var item in context.Categories.ToList())
@@ -42,13 +43,12 @@
         </div>
     </div>
     <div class="form-group">
-        <label class="text-info">Avatar</label>
         <div class="custom-file">
             <input type="file" class="custom-file-input" id="customFile" asp-for="IformfilePath">
-            <label class="custom-file-label" for="customFile">Choose file</label>
+            <label class="custom-file-label" for="customFile">Chọn ảnh cho sản phẩm này</label>
         </div>
     </div>
-    <button type="submit" class="btn btn-primary mb-2">Create</button>
+    <button type="submit" class="btn btn-primary mb-2">Tạo Mới Sản Phẩm</button>
 </form>
 
 <script src="~/lib/jquery/dist/jquery.js"></script>

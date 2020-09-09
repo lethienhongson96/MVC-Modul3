@@ -4,17 +4,17 @@
 @{
 
 }
-<a asp-action="Create" asp-controller="Product">Create</a>
+<a asp-action="Create" asp-controller="Product" style="float:right">Create</a>
 
 <table class="table" id="ProductIndex">
     <thead class="thead-dark" style="text-align:center">
         <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Price</th>
-            <th scope="col">Create At</th>
-            <th scope="col">Image</th>
-            <th scope="col">Status</th>
-            <th scope="col">Category</th>
+            <th scope="col">Tên sản phẩm</th>
+            <th scope="col">Giá</th>
+            <th scope="col">Ngày tạo</th>
+            <th scope="col">Hình ảnh</th>
+            <th scope="col">Trạng thái</th>
+            <th scope="col">Danh mục</th>
             <th scope="col">Action</th>
         </tr>
     </thead>
@@ -40,6 +40,17 @@
             </tr>
         }
     </tbody>
+    <tfoot class="thead-dark" style="text-align:center">
+        <tr>
+            <th scope="col">Tên sản phẩm</th>
+            <th scope="col">Giá</th>
+            <th scope="col">Ngày tạo</th>
+            <th scope="col">Hình ảnh</th>
+            <th scope="col">Trạng thái</th>
+            <th scope="col">Danh mục</th>
+            <th scope="col">Action</th>
+        </tr>
+    </tfoot>
 </table>
 
 @section Scripts{

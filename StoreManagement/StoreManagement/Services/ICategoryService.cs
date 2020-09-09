@@ -17,5 +17,11 @@ namespace StoreManagement.Services
         int UpdateCategory(Category category);
 
         int DeleteCategory(int id);
+
+        int MoveCategoryForProduct(int id);
+
+        List<Product> GetListProductByCategoryId(int id);
+
+        int MoveRangeCategoryForProduct(List<Product> products);
     }
 }

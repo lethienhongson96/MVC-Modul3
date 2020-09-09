@@ -5,13 +5,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200909065254_CreateIdentityAndAddressTable.cs" />
+    <Compile Remove="Migrations\20200909065254_CreateIdentityAndAddressTable.Designer.cs" />
+    <Compile Remove="Migrations\20200909071153_AlterColunmInWardTable.cs" />
+    <Compile Remove="Migrations\20200909071153_AlterColunmInWardTable.Designer.cs" />
+    <Compile Remove="Migrations\20200909093751_ReStoreProvinceWardDistrict.cs" />
+    <Compile Remove="Migrations\20200909093751_ReStoreProvinceWardDistrict.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.7">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
   </ItemGroup>
 
   <ItemGroup>

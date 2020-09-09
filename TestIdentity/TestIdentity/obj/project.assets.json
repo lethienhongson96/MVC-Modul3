@@ -5875,11 +5875,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\OOP_Modul2_C#\\TestIdentity\\TestIdentity\\TestIdentity.csproj",
+      "projectUniqueName": "D:\\MVC-Modul3\\TestIdentity\\TestIdentity\\TestIdentity.csproj",
       "projectName": "TestIdentity",
-      "projectPath": "D:\\OOP_Modul2_C#\\TestIdentity\\TestIdentity\\TestIdentity.csproj",
+      "projectPath": "D:\\MVC-Modul3\\TestIdentity\\TestIdentity\\TestIdentity.csproj",
       "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-      "outputPath": "D:\\OOP_Modul2_C#\\TestIdentity\\TestIdentity\\obj\\",
+      "outputPath": "D:\\MVC-Modul3\\TestIdentity\\TestIdentity\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -5939,7 +5939,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

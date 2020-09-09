@@ -1,15 +1,15 @@
-CREATE TABLE district (
-  id int  NOT NULL,
-  _name nvarchar(100)    NULL,
-  _prefix nvarchar(20)    NULL,
-  _province_id int   NULL
-);
+--CREATE TABLE district (
+--  id int  NOT NULL,
+--  _name nvarchar(100)    NULL,
+--  _prefix nvarchar(20)    NULL,
+--  _province_id int   NULL
+--);
 
 --
 -- Dumping data for table district
 --
 
-INSERT INTO district (id, _name, _prefix, _province_id) VALUES
+INSERT INTO Provinces (id, _name, _prefix, _province_id) VALUES
 (1, N'Bình Chánh', N'Huyện', 1),
 (2, N'Bình Tân', N'Quận', 1),
 (3, N'Bình Thạnh', N'Quận', 1),
@@ -729,17 +729,17 @@ INSERT INTO district (id, _name, _prefix, _province_id) VALUES
 -- Table structure for table province
 --
 
-CREATE TABLE province (
-  id int NOT NULL,
-  _name nvarchar(50)    NULL,
-  _code nvarchar(20)    NULL
-);
+--CREATE TABLE province (
+--  id int NOT NULL,
+--  _name nvarchar(50)    NULL,
+--  _code nvarchar(20)    NULL
+--);
 
 --
 -- Dumping data for table province
 --
 
-INSERT INTO province (id, _name, _code) VALUES
+INSERT INTO Provinces (id, _name, _code) VALUES
 (1, N'Hồ Chí Minh', N'SG'),
 (2, N'Hà Nội', N'HN'),
 (3, N'Đà Nẵng', N'DDN'),
@@ -813,19 +813,19 @@ INSERT INTO province (id, _name, _code) VALUES
 -- Table structure for table ward
 --
 
-CREATE TABLE ward (
-  id INT NOT NULL,
-  _name nvarchar(50)   NOT NULL,
-  _prefix nvarchar(20)    NULL,
-  _province_id int   NULL,
-  _district_id int   NULL
-);
+--CREATE TABLE ward (
+--  id INT NOT NULL,
+--  _name nvarchar(50)   NOT NULL,
+--  _prefix nvarchar(20)    NULL,
+--  _province_id int   NULL,
+--  _district_id int   NULL
+--);
 
 --
 -- Dumping data for table ward
 --
 
-INSERT INTO ward (id, _name, _prefix, _province_id, _district_id) VALUES
+INSERT INTO Wards (id, _name, _prefix, _province_id, _district_id) VALUES
 (1, N'An Phú Tây', N'Xã', 1, 1),
 (2, N'Bình Chánh', N'Xã', 1, 1),
 (3, N'Bình Hưng', N'Xã', 1, 1),
@@ -1796,7 +1796,7 @@ INSERT INTO ward (id, _name, _prefix, _province_id, _district_id) VALUES
 (968, N'Thanh Lộc Đán', N'Phường', 3, 62),
 (969, N'Vĩnh Trung', N'Phường', 3, 62),
 (970, N'Xuân Hà', N'Phường', 3, 62)
-INSERT INTO ward (id, _name, _prefix, _province_id, _district_id) VALUES
+INSERT INTO Wards (id, _name, _prefix, _province_id, _district_id) VALUES
 (971, N'Cây Trường II', N'Xã', 4, 63),
 (972, N'Hưng Hòa', N'Xã', 4, 63),
 (973, N'Lai Hưng', N'Xã', 4, 63),
@@ -2381,7 +2381,7 @@ INSERT INTO ward (id, _name, _prefix, _province_id, _district_id) VALUES
 (1552, N'Phù Ninh', N'Xã', 7, 103),
 (1553, N'Quảng Thanh', N'Xã', 7, 103),
 (1554, N'Tân Dương', N'Xã', 7, 103);
-INSERT INTO ward (id, _name, _prefix, _province_id, _district_id) VALUES
+INSERT INTO Wards (id, _name, _prefix, _province_id, _district_id) VALUES
 (1555, N'Thiên Hương', N'Xã', 7, 103),
 (1556, N'Thủy Sơn', N'Xã', 7, 103),
 (1557, N'Thủy Triều', N'Xã', 7, 103),
@@ -2833,7 +2833,7 @@ INSERT INTO ward (id, _name, _prefix, _province_id, _district_id) VALUES
 (2003, N'Tam Thanh', N'Xã', 9, 135),
 (2004, N'Tân Thạnh', N'Phường', 9, 135),
 (2005, N'Trường Xuân', N'Phường', 9, 135);
-INSERT INTO ward (id, _name, _prefix, _province_id, _district_id) VALUES
+INSERT INTO Ward (id, _name, _prefix, _province_id, _district_id) VALUES
 (2006, N'A Nông', N'Xã', 9, 136),
 (2007, N'A Tiêng', N'Xã', 9, 136),
 (2008, N'A Vương', N'Xã', 9, 136),
@@ -3477,7 +3477,7 @@ INSERT INTO ward (id, _name, _prefix, _province_id, _district_id) VALUES
 (2646, N'Lạc Xuân', N'Xã', 14, 189),
 (2647, N'Pró', N'Xã', 14, 189),
 (2648, N'Quảng Lập', N'Xã', 14, 189);
-INSERT INTO ward (id, _name, _prefix, _province_id, _district_id) VALUES
+INSERT INTO Ward (id, _name, _prefix, _province_id, _district_id) VALUES
 (2649, N'Thạnh Mỹ', N'Thị trấn', 14, 189),
 (2650, N'Tu Tra', N'Xã', 14, 189),
 (2651, N'Bình Thạnh', N'Xã', 14, 190),
@@ -3855,7 +3855,7 @@ INSERT INTO ward (id, _name, _prefix, _province_id, _district_id) VALUES
 (3023, N'Xuân Lai', N'Xã', 17, 218),
 (3024, N'An Thịnh', N'Xã', 17, 219),
 (3025, N'Bình Định', N'Xã', 17, 219);
-INSERT INTO ward (id, _name, _prefix, _province_id, _district_id) VALUES
+INSERT INTO Ward (id, _name, _prefix, _province_id, _district_id) VALUES
 (3026, N'Lai Hạ', N'Xã', 17, 219),
 (3027, N'Lâm Thao', N'Xã', 17, 219),
 (3028, N'Minh Tân', N'Xã', 17, 219),
