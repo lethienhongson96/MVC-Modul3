@@ -77,7 +77,7 @@ namespace StoreManagement.Controllers
             return View(_categoryService.GetListProductByCategoryId(id));
         }
 
-        public ActionResult MoveDefaultToAnother(List<ViewUpdate> ViewUpdates)
+        public ActionResult MoveDefaultToAnother([FromBody] List<ViewUpdate> ViewUpdates)
         {
             /*if (_categoryService.MoveRangeCategoryForProduct(products) > 0)
                 return RedirectToAction("Category","Index");*/

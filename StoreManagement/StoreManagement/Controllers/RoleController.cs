@@ -73,22 +73,19 @@ namespace StoreManagement.Controllers
             return View(role);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Delete(string id)
+        [Route("/Role/Delete/{id}")]
+        public IActionResult Delete(string id)
         {
-            if (ModelState.IsValid)
-            {
-                var role = await _roleManager.FindByIdAsync(id);
-                if (role != null)
-                {
-                    var result = await _roleManager.DeleteAsync(role);
-                    if (result.Succeeded)
-                    {
-                        return RedirectToAction("Index", "Role");
-                    }
-                }
-            }
-            return RedirectToAction("Index", "Role");
+            var deleteResult = false;
+            var existUser = Task.Run(async () => await _roleManager.FindByIdAsync(id)).Result;
+
+            if (existUser == null)
+                return Json(new { deleteResult });
+
+            var identityResult = Task.Run(async () => await _roleManager.DeleteAsync(existUser)).Result;
+            deleteResult = identityResult.Succeeded;
+
+            return Json(new { deleteResult });
         }
     }
 }

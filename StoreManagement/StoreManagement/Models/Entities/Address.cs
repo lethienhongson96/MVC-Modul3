@@ -14,6 +14,7 @@ namespace StoreManagement.Models.Entities
         public int WardId { get; set; }
 
         [MaxLength(200)]
+        [Required(ErrorMessage ="Trường này không được bỏ trống")]
         public string HouseNum { get; set; }
 
         public string UserId { get; set; }

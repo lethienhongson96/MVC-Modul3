@@ -61,6 +61,8 @@ namespace StoreManagement.Controllers
                     AddressId = address.Id
                 };
                 var result = await _userManager.CreateAsync(User, model.Password);
+                address.UserId = User.Id;
+                await _context.SaveChangesAsync();
 
                 if (result.Succeeded)
                 {
@@ -98,7 +100,6 @@ namespace StoreManagement.Controllers
         [HttpGet]
         public IActionResult Login(string returnUrl = "") =>
             View(new LoginViewModel { ReturnUrl = returnUrl });
-
 
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
@@ -141,7 +142,6 @@ namespace StoreManagement.Controllers
                 Avatar_Path = User.Avatar,
                 PhoneNum = User.PhoneNumber
             };
-
             return View(model);
         }
 
@@ -195,17 +195,23 @@ namespace StoreManagement.Controllers
             _context.Remove(address);
             Task.Run(async () => await _context.SaveChangesAsync());
 
+            if (!string.IsNullOrEmpty(existUser.Avatar))
+            {
+                string DelPath = Path.Combine(_hostEnvironment.WebRootPath, "Images/UserImages", existUser.Avatar);
+                System.IO.File.Delete(DelPath);
+            }
+
             var identityResult = Task.Run(async () => await _userManager.DeleteAsync(existUser)).Result;
             deleteResult = identityResult.Succeeded;
 
             return Json(new { deleteResult });
         }
 
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
         }
     }
 }

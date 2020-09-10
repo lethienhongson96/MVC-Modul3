@@ -20,7 +20,7 @@ Account.delete = function (Id) {
                     contentType: 'json',
                     success: function (data) {
                         if (data.deleteResult) {
-                            window.location.href = "/Account/Index";
+                            window.location.href = "/Account/Index/";
                         }
                         else {
                             bootbox.alert("Invalid Id User");

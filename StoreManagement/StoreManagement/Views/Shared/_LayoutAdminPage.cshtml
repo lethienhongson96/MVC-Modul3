@@ -1,4 +1,7 @@
-﻿<!doctype html>
+﻿
+@inject SignInManager<ApplicationUser> _signInManager
+
+<!doctype html>
 <html lang="en">
 
 <head>
@@ -106,25 +109,36 @@
                     <div class="user-dropdown-details d-flex">
                         <div class="profile_details">
                             <ul>
-                                <li class="dropdown profile_details_drop">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="dropdownMenu3" aria-haspopup="true"
-                                       aria-expanded="false">
-                                        <div class="profile_img">
-                                            <img src="~/Layout_AdminPage/starter/assets/images/profileimg.jpg" class="rounded-circle" alt="" />
-                                            <div class="user-active">
-                                                <span></span>
+                                @if (_signInManager.IsSignedIn(User))
+                                {
+                                    <li class="dropdown profile_details_drop">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="dropdownMenu3" aria-haspopup="true"
+                                           aria-expanded="false">
+
+                                            <div class="profile_img">
+                                                <img src="~/Images/UserImages/@_signInManager.UserManager.GetUserAsync(User).Result.Avatar"
+                                                     class="rounded-circle" alt="" />
+                                                <div class="user-active">
+                                                    <span></span>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </a>
-                                    <ul class="dropdown-menu drp-mnu" aria-labelledby="dropdownMenu3">
-                                        <li class="user-info">
-                                            <h5 class="user-name">John Deo</h5>
-                                            <span class="status ml-2">Available</span>
-                                        </li>
-                                        <li> <a href="#"><i class="lnr lnr-user"></i>My Profile</a> </li>
-                                        <li class="logout"> <a href="#sign-up.html"><i class="fa fa-power-off"></i> Logout</a> </li>
-                                    </ul>
-                                </li>
+                                        </a>
+                                        <ul class="dropdown-menu drp-mnu" aria-labelledby="dropdownMenu3">
+                                            <li class="user-info">
+                                                <h6 class="user-name">
+                                                    @_signInManager.UserManager.GetUserAsync(User).Result.FullName
+                                                </h6>
+                                                <span class="status ml-2">Available</span>
+                                            </li>
+                                            <li> <a href="#"><i class="lnr lnr-user"></i>My Profile</a> </li>
+                                            <li class="logout">
+                                                <a asp-controller="Account" asp-action="Logout">
+                                                    <i class="fa fa-power-off"></i> Logout
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                }
                             </ul>
                         </div>
                     </div>

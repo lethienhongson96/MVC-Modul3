@@ -11,7 +11,7 @@
     </div>
     <div asp-validation-summary="All"></div>
 </form>
-<table class="table table-striped">
+<table class="table table-striped" id="IndexRole">
     <thead>
         <tr>
             <th>Id</th>
@@ -27,9 +27,7 @@
                 <td>@role.Name</td>
                 <td>
                     <a asp-controller="Role" asp-action="Edit" asp-route-id="@role.Id">Edit</a>
-
-                    <a asp-controller="Role" asp-action="Delete" asp-route-id="@role.Id"
-                       onclick="return confirm('Delete This Role ?')">
+                    <a href="javascript:void(0)" class="text-danger" onclick="Role.delete('@role.Id')">
                         Delete
                     </a>
                 </td>
@@ -37,3 +35,7 @@
         }
     </tbody>
 </table>
+
+@section Scripts{
+    <script src="~/js/Role.js" asp-append-version="true"></script>
+}
