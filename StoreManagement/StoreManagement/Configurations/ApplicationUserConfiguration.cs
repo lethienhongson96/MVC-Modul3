@@ -19,7 +19,7 @@ namespace StoreManagement.Configurations
 
             builder.HasOne(s => s.Address)
             .WithOne(ad => ad.ApplicationUser)
-            .HasForeignKey<Address>(ad => ad.UserId);
+            .HasForeignKey<Address>(ad => ad.ApplicationUserId);
         }
     }
 }

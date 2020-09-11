@@ -1,5 +1,5 @@
 ﻿
-@inject SignInManager<ApplicationUser> _signInManager
+@inject SignInManager<ApplicationUser> _signInManager;
 
 <!doctype html>
 <html lang="en">
@@ -43,7 +43,9 @@
             <!-- //image logo -->
 
             <div class="logo-icon text-center">
-                <a href="index.html" title="logo"><img src="~/Layout_AdminPage/starter/assets/images/logo.png" alt="logo-icon"> </a>
+                <a href="index.html" title="logo">
+                    <img src="~/Layout_AdminPage/starter/assets/images/logo.png" alt="logo-icon">
+                </a>
             </div>
             <!-- //logo end -->
 
@@ -51,36 +53,54 @@
 
                 <!-- sidebar nav start -->
                 <ul class="nav nav-pills nav-stacked custom-nav">
-                    <li>
-                        <a href="index.html"><i class="fa fa-user"></i><span>Account</span></a>
+                    <li class="menu-list">
+                        <a href="#">
+                            <i class="fa fa-user"></i>
+                            <span>Tài Khoản<i class="lnr lnr-chevron-right"></i></span>
+                        </a>
+                        <ul class="sub-menu-list">
+                            <li><a asp-controller="Account" asp-action="Index">Quản Lí User</a></li>
+                            <li><a asp-controller="Role" asp-action="Index">Quản Lí Phân Quyền</a></li>
+                            <li><a href="people.html">Phân Quyền Cho User</a></li>
+                        </ul>
                     </li>
                     <li class="menu-list">
                         <a href="#">
                             <i class="fa fa-file-text"></i>
-                            <span>hóa đơn <i class="lnr lnr-chevron-right"></i></span>
+                            <span>Hóa Đơn<i class="lnr lnr-chevron-right"></i></span>
                         </a>
                         <ul class="sub-menu-list">
-                            <li><a href="carousels.html">Carousels</a></li>
-                            <li><a href="cards.html">Default cards</a></li>
-                            <li><a href="people.html">People cards</a></li>
+                            <li><a asp-controller="Order" asp-action="Index">Quản Lí Hóa Đơn</a></li>
+                            <li><a asp-controller="Order" asp-action="Create">Tạo Hóa Đơn Mới</a></li>
+                            <li><a href="people.html">Thanh Toán</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="pricing.html">
+                    <li class="menu-list">
+                        <a href="#">
                             <i class="fa fa-window-restore"></i>
-                            <span>Sản Phẩm</span>
+                            <span>Sản Phẩm<i class="lnr lnr-chevron-right"></i></span>
                         </a>
+                        <ul class="sub-menu-list">
+                            <li><a asp-controller="Product" asp-action="Index">Quản Lí Sản Phẩm</a></li>
+                            <li><a asp-controller="Product" asp-action="Create">Tạo Sản Phẩm Mới</a></li>
+                            <li><a href="people.html">Thanh Toán</a></li>
+                        </ul>
                     </li>
-                    <li class="active">
-                        <a href="blocks.html">
-                            <i class="fa fa-th"></i>
-                            <span>Content blocks</span>
+                    <li class="menu-list">
+                        <a href="#">
+                            <i class="fa fa-list-alt"></i>
+                            <span>Danh Mục<i class="lnr lnr-chevron-right"></i></span>
                         </a>
+                        <ul class="sub-menu-list">
+                            <li><a asp-controller="Category" asp-action="Index">Quản Lí Danh Mục</a></li>
+                            <li><a asp-controller="Category" asp-action="Create">Tạo Danh Mục Mới</a></li>
+                            <li><a href="people.html">Thanh Toán</a></li>
+                        </ul>
                     </li>
                     <li>
                         <a href="forms.html">
                             <i class="fa fa-file-text"></i>
-                            <span>Forms</span>
+                            <span>Example</span>
                         </a>
                     </li>
                 </ul>
@@ -114,7 +134,6 @@
                                     <li class="dropdown profile_details_drop">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="dropdownMenu3" aria-haspopup="true"
                                            aria-expanded="false">
-
                                             <div class="profile_img">
                                                 <img src="~/Images/UserImages/@_signInManager.UserManager.GetUserAsync(User).Result.Avatar"
                                                      class="rounded-circle" alt="" />
@@ -193,14 +212,13 @@
     <script src="~/Layout_AdminPage/starter/assets/js/jquery-3.3.1.min.js"></script>
     <script src="~/Layout_AdminPage/starter/assets/js/jquery-1.10.2.min.js"></script>
     <!-- chart js -->
-    <script src="~/Layout_AdminPage/starter/assets/js/Chart.min.js"></script>
+    @*<script src="~/Layout_AdminPage/starter/assets/js/Chart.min.js"></script>*@
     <script src="~/Layout_AdminPage/starter/assets/js/utils.js"></script>
     <!-- //chart js -->
     <!-- Different scripts of charts.  Ex.Barchart, Linechart -->
-    <script src="~/Layout_AdminPage/starter/assets/js/bar.js"></script>
-    <script src="~/Layout_AdminPage/starter/assets/js/linechart.js"></script>
+    @*<script src="~/Layout_AdminPage/starter/assets/js/bar.js"></script>
+        <script src="~/Layout_AdminPage/starter/assets/js/linechart.js"></script>*@
     <!-- //Different scripts of charts.  Ex.Barchart, Linechart -->
-
 
     <script src="~/Layout_AdminPage/starter/assets/js/jquery.nicescroll.js"></script>
     <script src="~/Layout_AdminPage/starter/assets/js/scripts.js"></script>

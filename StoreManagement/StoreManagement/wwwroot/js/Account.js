@@ -83,7 +83,12 @@ $(document).ready(function () {
         {
             "columnDefs": [
                 {
-                    "targets": 3,
+                    "targets": 7,
+                    "orderable": false,
+                    "searchable": false
+                },
+                {
+                    "targets": 8,
                     "orderable": false,
                     "searchable": false
                 }

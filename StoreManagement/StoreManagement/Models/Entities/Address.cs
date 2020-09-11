@@ -17,7 +17,7 @@ namespace StoreManagement.Models.Entities
         [Required(ErrorMessage ="Trường này không được bỏ trống")]
         public string HouseNum { get; set; }
 
-        public string UserId { get; set; }
+        public string ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
     }
 }

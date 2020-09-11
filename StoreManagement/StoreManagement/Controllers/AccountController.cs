@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using StoreManagement.Models;
 using StoreManagement.Models.Entities;
 using StoreManagement.Models.ViewModels;
+using System;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace StoreManagement.Controllers
 {
@@ -31,6 +30,7 @@ namespace StoreManagement.Controllers
             _signInManager = signInManager;
         }
 
+        [Authorize]
         public IActionResult Index() => View(_userManager.Users.ToList());
 
         [HttpGet]
@@ -53,7 +53,7 @@ namespace StoreManagement.Controllers
 
                 ApplicationUser User = new ApplicationUser()
                 {
-                    Avatar = UploadedFile(model.iformfile_path),
+                    Avatar = AvatarPathForUser(model.iformfile_path),
                     FullName = model.FullName,
                     PhoneNumber = model.PhoneNum,
                     Email = model.Email,
@@ -61,7 +61,8 @@ namespace StoreManagement.Controllers
                     AddressId = address.Id
                 };
                 var result = await _userManager.CreateAsync(User, model.Password);
-                address.UserId = User.Id;
+
+                address.ApplicationUserId = User.Id;
                 await _context.SaveChangesAsync();
 
                 if (result.Succeeded)
@@ -74,6 +75,14 @@ namespace StoreManagement.Controllers
                         ModelState.AddModelError("", item.Description);
             }
             return View();
+        }
+
+        private string AvatarPathForUser(IFormFile iformfile_path)
+        {
+            if (iformfile_path == null)
+                return "DefaultAvatar.png";
+            else
+                return UploadedFile(iformfile_path);
         }
 
         private string UploadedFile(IFormFile iformfile_path)
@@ -112,7 +121,7 @@ namespace StoreManagement.Controllers
                         return RedirectToAction("Index", "Home");
                 }
             }
-            ModelState.AddModelError("", "Invalid account or password");
+            ModelState.AddModelError("", "Sai Tài Khoản Hoặc Mật Khẩu !");
 
             return View(model);
         }
@@ -180,7 +189,7 @@ namespace StoreManagement.Controllers
         [Route("/Account/Delete/{id}")]
         public IActionResult Delete(string id)
         {
-            var deleteResult = false;
+            bool deleteResult = false;
             var existUser = Task.Run(async () => await _userManager.FindByIdAsync(id)).Result;
 
             if (existUser == null)
@@ -189,14 +198,13 @@ namespace StoreManagement.Controllers
             var address = _context.Addresses.FirstOrDefault(el => el.Id == existUser.AddressId);
 
             _context.Remove(address);
-            Task.Run(async () => await _context.SaveChangesAsync());
+            //Task.Run(async () => await _context.SaveChangesAsync());
 
-            if (!string.IsNullOrEmpty(existUser.Avatar))
+            if (existUser.Avatar!= "DefaultAvatar.png")
             {
                 string DelPath = Path.Combine(_hostEnvironment.WebRootPath, "Images/UserImages", existUser.Avatar);
                 System.IO.File.Delete(DelPath);
             }
-
             var identityResult = Task.Run(async () => await _userManager.DeleteAsync(existUser)).Result;
             deleteResult = identityResult.Succeeded;
 
