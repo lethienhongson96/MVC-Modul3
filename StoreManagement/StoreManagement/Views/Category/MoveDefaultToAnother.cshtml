@@ -1,56 +1,37 @@
-﻿@model List<Product>
+﻿@model List<MoveDefaultView>
 
 @inject StoreDbContext context;
 @{
     var CategoryList = context.Categories.ToList();
+    const int DefaultCategoryId = 20; 
 }
 
-<form method="post">
-    @foreach (var item in Model)
-    {
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <input type="hidden" asp-for="@item.Id" />
-                <label>Sản phẩm</label>
-                <input class="form-control" asp-for="@item.Name" />
-            </div>
-            <div class="form-group col-md-6">
-                <label>Danh mục</label>
-                <select class="form-control" asp-for="@item.CategoryId"
-                        asp-items="@(new SelectList(CategoryList,"Id","Name"))">
-                </select>
-            </div>
-        </div>
-    }
-    <button type="button" onclick="edit()" class="btn btn-primary mb-2">Lưu Tất Cả Thay Đổi</button>
-</form>
+@using (Html.BeginForm("MoveDefaultToAnother", "Category", FormMethod.Post))
+{
+    <table class="table">
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            @Html.Hidden("MoveDefaultViews.Index", (@i + 10))
 
-<script>
-    function edit() {
-        let name = document.getElementsByName("item.Name");
-        let cate = document.getElementsByName("item.CategoryId");
-        let idOfProduct = document.getElementsByName("item.Id");
-        var ViewUpdates = [];
-        for (let i = 0; i < name.length; i++) {
-            var ViewUpdate = {
-                id: +idOfProduct[i].value,
-                name: name[i].value,
-                categoryId: +cate[i].value,
-            }
-            ViewUpdates.push(ViewUpdate);
+            @Html.Hidden("MoveDefaultViews[" + (@i + 10) + "].Id",
+                   Model[i].Id)
+            <tr>
+                <td>
+                    @Html.TextBox("MoveDefaultViews[" + (@i + 10) + "].Name",
+                    Model[i].Name, new { @readonly = "readonly", @class = "form-control" })
+                </td>
+                <td>
+                    @Html.DropDownList("MoveDefaultViews[" + (@i + 10) + "].CategoryId",
+                        new SelectList(CategoryList, "Id", "Name", DefaultCategoryId),
+                        new { @class = "form-control" })
+                </td>
+            </tr>
         }
-        console.log(ViewUpdates);
-        ViewUpdates = JSON.stringify({ 'list': ViewUpdates });
-        $.ajax({
-            url: "",
-            type: "POST",
-            contentType: 'application/json; charset=utf-8',
-            dataType: "json",
-            data: ViewUpdates,
-            traditional: true,
-            success: function (d) {
-                console.log(ViewUpdates);
-            }
-        })
-    }
-</script>
+        <tr>
+            <td>
+                <button type="submit" class="btn btn-success">Lưu Tất Cả Thay đổi</button>
+            </td>
+        </tr>
+    </table>
+}
+

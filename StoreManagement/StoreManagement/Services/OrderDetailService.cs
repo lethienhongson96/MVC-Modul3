@@ -9,11 +9,11 @@ namespace StoreManagement.Services
 {
     public class OrderDetailService : IOrderDetailService
     {
-        private readonly StoreDbContext context;
+        private readonly StoreDbContext _context;
 
         public OrderDetailService(StoreDbContext context)
         {
-            this.context = context;
+            _context = context;
         }
 
         public double CalculateMoney(double PriceProduct, double Percent, int Quantity) =>
@@ -31,60 +31,60 @@ namespace StoreManagement.Services
 
         public int CreateOrderDetail(OrderDetail orderDetail)
         {
-            List<OrderDetail> orderDetails = context.OrderDetails.ToList();
+            List<OrderDetail> orderDetails = _context.OrderDetails.ToList();
 
             OrderDetail FindOrderDetail = orderDetails.Find(el =>
                                         el.OrderId == orderDetail.OrderId &&
                                         el.ProductId == orderDetail.ProductId);
-            Product product = context.Products.FirstOrDefault(el => el.Id == orderDetail.ProductId);
+            Product product = _context.Products.FirstOrDefault(el => el.Id == orderDetail.ProductId);
 
             if (orderDetails.Contains(FindOrderDetail))
             {
                 FindOrderDetail.Quantity += orderDetail.Quantity;
                 FindOrderDetail.UnitPrice += CalculateMoney(product.PricePerUnit, orderDetail.Discount, orderDetail.Quantity);
 
-                context.Update(FindOrderDetail);
+                _context.Update(FindOrderDetail);
             }
             else
             {
                 orderDetail.UnitPrice = CalculateMoney(product.PricePerUnit, orderDetail.Discount, orderDetail.Quantity);
 
-                context.Add(orderDetail);
+                _context.Add(orderDetail);
             }
 
-            return context.SaveChanges();
+            return _context.SaveChanges();
         }
 
         public int DeleteOrderDetail(int OrderId, int ProductId)
         {
-            var OrderDetail = context.OrderDetails.FirstOrDefault(el =>
+            var OrderDetail = _context.OrderDetails.FirstOrDefault(el =>
                                 el.OrderId == OrderId &&
                                 el.ProductId == ProductId);
-            context.Remove(OrderDetail);
-            return context.SaveChanges();
+            _context.Remove(OrderDetail);
+            return _context.SaveChanges();
         }
 
         public List<Product> GetListProductByCategoryId(int id) =>
-             context.Products.ToList().FindAll(el => el.CategoryId == id);
+             _context.Products.ToList().FindAll(el => el.CategoryId == id);
 
         public Order GetOrderByid(int id) =>
-            context.Orders.FirstOrDefault(el => el.Id == id);
+            _context.Orders.FirstOrDefault(el => el.Id == id);
 
         public OrderDetail GetOrderDetailByIds(int ProductId, int OrderId)
         {
-            var orderdetail = context.OrderDetails.FirstOrDefault(el =>
+            var orderdetail = _context.OrderDetails.FirstOrDefault(el =>
                                 el.ProductId == ProductId &&
                                 el.OrderId == OrderId);
             return (orderdetail);
         }
 
         public Product GetProductById(int id) =>
-            context.Products.FirstOrDefault(el => el.Id == id);
+            _context.Products.FirstOrDefault(el => el.Id == id);
 
         public int UpdateOrderDetail(OrderDetail orderDetail)
         {
-            context.Update(orderDetail);
-            return context.SaveChanges();
+            _context.Update(orderDetail);
+            return _context.SaveChanges();
         }
     }
 }

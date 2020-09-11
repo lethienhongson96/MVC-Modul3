@@ -70,12 +70,8 @@ namespace StoreManagement.Controllers
                     return RedirectToAction("Index", "Account");
                 }
                 else
-                {
                     foreach (var item in result.Errors)
-                    {
                         ModelState.AddModelError("", item.Description);
-                    }
-                }
             }
             return View();
         }

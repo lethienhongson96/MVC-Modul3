@@ -65,7 +65,6 @@ namespace StoreManagement.Controllers
                     return RedirectToAction("Index","Product");
                 }
             }
-
             return View(productView);
         }
     }

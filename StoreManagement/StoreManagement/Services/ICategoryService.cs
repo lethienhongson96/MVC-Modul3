@@ -1,4 +1,5 @@
 ﻿using StoreManagement.Models.Entities;
+using StoreManagement.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,8 +21,10 @@ namespace StoreManagement.Services
 
         int MoveCategoryForProduct(int id);
 
-        List<Product> GetListProductByCategoryId(int id);
+        List<MoveDefaultView> GetListMoveDefaultViewByCateId(int id);
 
         int MoveRangeCategoryForProduct(List<Product> products);
+
+        Product GetProductById(int id);
     }
 }

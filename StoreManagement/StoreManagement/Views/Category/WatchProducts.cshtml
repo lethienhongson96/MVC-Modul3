@@ -36,14 +36,14 @@
                 </td>
                 <td>@item.Status</td>
                 <td>
-                    <a href="javascript:void(0)" class="text-danger" onclick="Category.RemoveProductFromCategory(@item.Id)">
+                    <a href="javascript:void(0)" class="text-danger"
+                       onclick="Category.RemoveProductFromCategory(@item.Id)">
                         Delete
                     </a>
                     <a asp-action="Edit" asp-controller="Product" asp-route-id="@item.Id">Sửa</a>
                 </td>
             </tr>
         }
-
     </tbody>
 
     <tfoot style="text-align:center" class="thead-dark">

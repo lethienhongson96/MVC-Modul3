@@ -17,8 +17,8 @@ namespace StoreManagement.Services
 
         public ProductService(StoreDbContext context, IWebHostEnvironment webHostEnvironment)
         {
-            this._context = context;
-            this._webHostEnvironment = webHostEnvironment;
+            _context = context;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public int CreateProduct(CreateProductView productView)

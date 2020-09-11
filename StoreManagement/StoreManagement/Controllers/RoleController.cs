@@ -34,14 +34,9 @@ namespace StoreManagement.Controllers
                 if(result.Succeeded)
                     return RedirectToAction("Index", "Role");
                 else
-                {
                     foreach (var item in result.Errors)
-                    {
                         ModelState.AddModelError("",item.Description);
-                    }
-                }
             }
-
             return RedirectToAction("Index", "Role");
         }
 
@@ -49,12 +44,12 @@ namespace StoreManagement.Controllers
         public IActionResult Edit(string id)
         {
             var identityRole = _roleManager.Roles.FirstOrDefault(r => r.Id == id);
+
             Role role = new Role()
             {
                 Role_Name = identityRole.Name,
                 Role_Id = identityRole.Id
             };
-
             return View(role);
         }
 
@@ -69,7 +64,6 @@ namespace StoreManagement.Controllers
                 await _roleManager.UpdateAsync(identityRole);
                 return RedirectToAction("Index", "Role");
             }
-
             return View(role);
         }
 

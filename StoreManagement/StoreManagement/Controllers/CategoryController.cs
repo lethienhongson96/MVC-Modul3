@@ -74,14 +74,24 @@ namespace StoreManagement.Controllers
         [HttpGet]
         public IActionResult MoveDefaultToAnother(int id)
         {
-            return View(_categoryService.GetListProductByCategoryId(id));
+            return View(_categoryService.GetListMoveDefaultViewByCateId(id));
         }
 
-        public ActionResult MoveDefaultToAnother([FromBody] List<ViewUpdate> ViewUpdates)
+        [HttpPost]
+        public ActionResult MoveDefaultToAnother(List<MoveDefaultView> MoveDefaultViews)
         {
-            /*if (_categoryService.MoveRangeCategoryForProduct(products) > 0)
-                return RedirectToAction("Category","Index");*/
-            return Ok(ViewUpdates);
+            var ProductList = new List<Product>();
+
+            foreach (var item in MoveDefaultViews)
+            {
+                var Product = _categoryService.GetProductById(item.Id);
+                Product.CategoryId = item.CategoryId;
+                ProductList.Add(Product);
+            }
+            if (_categoryService.MoveRangeCategoryForProduct(ProductList) > 0)
+                return RedirectToAction("Index","Category");
+
+            return View(MoveDefaultViews);
         }
     }
 }

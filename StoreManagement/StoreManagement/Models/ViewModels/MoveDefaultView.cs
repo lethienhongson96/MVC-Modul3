@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace StoreManagement.Models.ViewModels
 {
-    public class ViewUpdate
+    public class MoveDefaultView
     {
-        public int id { get; set; }
-        public string name { get; set; }
-        public int categoryId { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int CategoryId { get; set; }
     }
 
 }
