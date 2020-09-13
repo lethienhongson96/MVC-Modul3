@@ -195,3 +195,4 @@ D:\MVC-Modul3\StoreManagement\StoreManagement\obj\Debug\netcoreapp3.1\Razor\View
 D:\MVC-Modul3\StoreManagement\StoreManagement\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
 D:\MVC-Modul3\StoreManagement\StoreManagement\obj\Debug\netcoreapp3.1\Razor\Views\Role\Index.cshtml.g.cs
 D:\MVC-Modul3\StoreManagement\StoreManagement\obj\Debug\netcoreapp3.1\Razor\Views\Role\Edit.cshtml.g.cs
+D:\MVC-Modul3\StoreManagement\StoreManagement\obj\Debug\netcoreapp3.1\Razor\Views\Account\UserDetail.cshtml.g.cs

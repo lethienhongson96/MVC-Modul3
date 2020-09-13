@@ -23,9 +23,13 @@
         {
             <tr style="text-align:center">
                 <td>
-                    @userManager.FindByIdAsync(item.ApplicationUserId).Result.FullName
-                    <img src="~/Images/UserImages/@userManager.FindByIdAsync(item.ApplicationUserId).Result.Avatar"
-                         alt="Alternate Text" style="width:27px;height:27px"/>
+                    <a asp-controller="Account" asp-action="UserDetail"
+                       asp-route-id="@userManager.FindByIdAsync(item.ApplicationUserId).Result.Id">
+
+                        @userManager.FindByIdAsync(item.ApplicationUserId).Result.FullName
+                        <img src="~/Images/UserImages/@userManager.FindByIdAsync(item.ApplicationUserId).Result.Avatar"
+                             alt="Alternate Text" style="width:27px;height:27px" />
+                    </a>
                 </td>
                 <td>@item.PayStatus</td>
                 <td>@item.CreateAt</td>

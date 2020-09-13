@@ -217,5 +217,8 @@ namespace StoreManagement.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Login", "Account");
         }
+
+        public IActionResult UserDetail(string id)=>
+            View(_userManager.FindByIdAsync(id).Result);
     }
 }
