@@ -3,7 +3,7 @@
 @inject StoreDbContext context;
 @{
     var CategoryList = context.Categories.ToList();
-    const int DefaultCategoryId = 20; 
+    const int DefaultCategoryId = 4; 
 }
 
 @using (Html.BeginForm("MoveDefaultToAnother", "Category", FormMethod.Post))

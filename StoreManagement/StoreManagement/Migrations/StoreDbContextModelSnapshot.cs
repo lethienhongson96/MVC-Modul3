@@ -44,6 +44,15 @@ namespace StoreManagement.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1A90DABB-1EE6-495A-940B-6E2E4EEC6B91",
+                            ConcurrencyStamp = "b26b3209-2b76-475c-89f0-71b7a7740ed7",
+                            Name = "Admin",
+                            NormalizedName = "Admin"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -129,6 +138,13 @@ namespace StoreManagement.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "CE6654BD-705E-4D25-8C90-71E2654ADAE8",
+                            RoleId = "1A90DABB-1EE6-495A-940B-6E2E4EEC6B91"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -162,8 +178,10 @@ namespace StoreManagement.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Avatar")
-                        .HasColumnType("nvarchar(500)")
-                        .HasMaxLength(500);
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200)
+                        .HasDefaultValue("DefaultAvatar.png");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -178,8 +196,8 @@ namespace StoreManagement.Migrations
 
                     b.Property<string>("FullName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -225,6 +243,48 @@ namespace StoreManagement.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "CE6654BD-705E-4D25-8C90-71E2654ADAE8",
+                            AccessFailedCount = 0,
+                            AddressId = 1,
+                            Avatar = "DefaultAvatar.png",
+                            ConcurrencyStamp = "5d405e72-7f4b-4472-9237-f4f80a567c63",
+                            Email = "lethienhongson96@gmail.com",
+                            EmailConfirmed = true,
+                            FullName = "Hồng Sơn",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "lethienhongson96@gmail.com",
+                            NormalizedUserName = "lethienhongson96@gmail.com",
+                            PasswordHash = "AQAAAAEAACcQAAAAENx6nNEw3LZjelBwAF3zHqd+0CRFN+mnp2PqaPRqtRLwssnOUtaXdBD0Ih+sPi/NbQ==",
+                            PhoneNumber = "0982102073",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "",
+                            TwoFactorEnabled = false,
+                            UserName = "lethienhongson96@gmail.com"
+                        },
+                        new
+                        {
+                            Id = "FC876771-8301-4765-B037-859AA899D708",
+                            AccessFailedCount = 0,
+                            AddressId = 2,
+                            Avatar = "DefaultAvatar.png",
+                            ConcurrencyStamp = "7a68928d-7131-4c69-b3a6-43c2711b09ac",
+                            Email = "Customer@gmail.com",
+                            EmailConfirmed = true,
+                            FullName = "Nguyễn Văn Vui",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "Customer@gmail.com",
+                            NormalizedUserName = "Customer@gmail.com",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOTKnA+HshTsTbZN5xqAM3w6waFsRMVxRJSDfKoydYtOawg2Cb+a6ZvQ85ecyddIHA==",
+                            PhoneNumber = "0984910724",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "",
+                            TwoFactorEnabled = false,
+                            UserName = "Customer@gmail.com"
+                        });
                 });
 
             modelBuilder.Entity("StoreManagement.Models.Entities.Address", b =>
@@ -258,6 +318,24 @@ namespace StoreManagement.Migrations
                         .HasFilter("[ApplicationUserId] IS NOT NULL");
 
                     b.ToTable("Addresses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DistrictId = 194,
+                            HouseNum = "28 Nguyễn Tri Phương",
+                            ProvinceId = 15,
+                            WardId = 2724
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DistrictId = 194,
+                            HouseNum = "28 Nguyễn Tri Phương",
+                            ProvinceId = 15,
+                            WardId = 2724
+                        });
                 });
 
             modelBuilder.Entity("StoreManagement.Models.Entities.Category", b =>
@@ -266,6 +344,12 @@ namespace StoreManagement.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreateAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreateBy")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -277,7 +361,43 @@ namespace StoreManagement.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CreateBy");
+
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreateAt = new DateTime(2020, 9, 14, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreateBy = "CE6654BD-705E-4D25-8C90-71E2654ADAE8",
+                            Name = "Iphone",
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreateAt = new DateTime(2020, 9, 14, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreateBy = "CE6654BD-705E-4D25-8C90-71E2654ADAE8",
+                            Name = "SamSung",
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreateAt = new DateTime(2020, 9, 14, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreateBy = "CE6654BD-705E-4D25-8C90-71E2654ADAE8",
+                            Name = "Bphone",
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreateAt = new DateTime(2020, 9, 14, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreateBy = "CE6654BD-705E-4D25-8C90-71E2654ADAE8",
+                            Name = "No Category",
+                            Status = 1
+                        });
                 });
 
             modelBuilder.Entity("StoreManagement.Models.Entities.District", b =>
@@ -327,6 +447,32 @@ namespace StoreManagement.Migrations
                     b.HasIndex("ApplicationUserId");
 
                     b.ToTable("Orders");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ApplicationUserId = "FC876771-8301-4765-B037-859AA899D708",
+                            CreateAt = new DateTime(2020, 9, 14, 0, 0, 0, 0, DateTimeKind.Local),
+                            PayStatus = 0,
+                            ShipperDate = new DateTime(2020, 9, 14, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ApplicationUserId = "FC876771-8301-4765-B037-859AA899D708",
+                            CreateAt = new DateTime(2020, 9, 14, 0, 0, 0, 0, DateTimeKind.Local),
+                            PayStatus = 0,
+                            ShipperDate = new DateTime(2020, 9, 14, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ApplicationUserId = "FC876771-8301-4765-B037-859AA899D708",
+                            CreateAt = new DateTime(2020, 9, 14, 0, 0, 0, 0, DateTimeKind.Local),
+                            PayStatus = 0,
+                            ShipperDate = new DateTime(2020, 9, 14, 0, 0, 0, 0, DateTimeKind.Local)
+                        });
                 });
 
             modelBuilder.Entity("StoreManagement.Models.Entities.OrderDetail", b =>
@@ -356,6 +502,62 @@ namespace StoreManagement.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("OrderDetails");
+
+                    b.HasData(
+                        new
+                        {
+                            OrderId = 1,
+                            ProductId = 1,
+                            Discount = 0.0,
+                            PayStatus = 0,
+                            Quantity = 1,
+                            UnitPrice = 5000000.0
+                        },
+                        new
+                        {
+                            OrderId = 1,
+                            ProductId = 2,
+                            Discount = 0.0,
+                            PayStatus = 0,
+                            Quantity = 2,
+                            UnitPrice = 12000000.0
+                        },
+                        new
+                        {
+                            OrderId = 2,
+                            ProductId = 3,
+                            Discount = 0.0,
+                            PayStatus = 0,
+                            Quantity = 1,
+                            UnitPrice = 7000000.0
+                        },
+                        new
+                        {
+                            OrderId = 2,
+                            ProductId = 4,
+                            Discount = 0.0,
+                            PayStatus = 0,
+                            Quantity = 3,
+                            UnitPrice = 9000000.0
+                        },
+                        new
+                        {
+                            OrderId = 3,
+                            ProductId = 5,
+                            Discount = 0.0,
+                            PayStatus = 0,
+                            Quantity = 1,
+                            UnitPrice = 4000000.0
+                        },
+                        new
+                        {
+                            OrderId = 3,
+                            ProductId = 6,
+                            Discount = 0.0,
+                            PayStatus = 0,
+                            Quantity = 2,
+                            UnitPrice = 20000000.0
+                        });
                 });
 
             modelBuilder.Entity("StoreManagement.Models.Entities.Product", b =>
@@ -371,14 +573,19 @@ namespace StoreManagement.Migrations
                     b.Property<DateTime>("CreateAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("CreateBy")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("ImagePath")
-                        .HasColumnType("nvarchar(250)")
-                        .HasMaxLength(250);
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200)
+                        .HasDefaultValue("default_product_image.png");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(250)")
-                        .HasMaxLength(250);
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<double>("PricePerUnit")
                         .HasColumnType("float");
@@ -390,7 +597,88 @@ namespace StoreManagement.Migrations
 
                     b.HasIndex("CategoryId");
 
+                    b.HasIndex("CreateBy");
+
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoryId = 1,
+                            CreateAt = new DateTime(2020, 9, 14, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreateBy = "CE6654BD-705E-4D25-8C90-71E2654ADAE8",
+                            ImagePath = "default_product_image.png",
+                            Name = "Iphone 5",
+                            PricePerUnit = 5000000.0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CategoryId = 1,
+                            CreateAt = new DateTime(2020, 9, 14, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreateBy = "CE6654BD-705E-4D25-8C90-71E2654ADAE8",
+                            ImagePath = "default_product_image.png",
+                            Name = "Iphone 6",
+                            PricePerUnit = 6000000.0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CategoryId = 1,
+                            CreateAt = new DateTime(2020, 9, 14, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreateBy = "CE6654BD-705E-4D25-8C90-71E2654ADAE8",
+                            ImagePath = "default_product_image.png",
+                            Name = "Iphone 7",
+                            PricePerUnit = 7000000.0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CategoryId = 2,
+                            CreateAt = new DateTime(2020, 9, 14, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreateBy = "CE6654BD-705E-4D25-8C90-71E2654ADAE8",
+                            ImagePath = "default_product_image.png",
+                            Name = "Galaxy 3",
+                            PricePerUnit = 3000000.0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CategoryId = 2,
+                            CreateAt = new DateTime(2020, 9, 14, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreateBy = "CE6654BD-705E-4D25-8C90-71E2654ADAE8",
+                            ImagePath = "default_product_image.png",
+                            Name = "Galaxy 4",
+                            PricePerUnit = 4000000.0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CategoryId = 3,
+                            CreateAt = new DateTime(2020, 9, 14, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreateBy = "CE6654BD-705E-4D25-8C90-71E2654ADAE8",
+                            ImagePath = "default_product_image.png",
+                            Name = "BPhone 10",
+                            PricePerUnit = 10000000.0,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CategoryId = 3,
+                            CreateAt = new DateTime(2020, 9, 14, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreateBy = "CE6654BD-705E-4D25-8C90-71E2654ADAE8",
+                            ImagePath = "default_product_image.png",
+                            Name = "BPhone 11",
+                            PricePerUnit = 11000000.0,
+                            Status = 1
+                        });
                 });
 
             modelBuilder.Entity("StoreManagement.Models.Entities.Province", b =>
@@ -498,6 +786,13 @@ namespace StoreManagement.Migrations
                         .HasForeignKey("StoreManagement.Models.Entities.Address", "ApplicationUserId");
                 });
 
+            modelBuilder.Entity("StoreManagement.Models.Entities.Category", b =>
+                {
+                    b.HasOne("StoreManagement.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany("Categories")
+                        .HasForeignKey("CreateBy");
+                });
+
             modelBuilder.Entity("StoreManagement.Models.Entities.Order", b =>
                 {
                     b.HasOne("StoreManagement.Models.ApplicationUser", "ApplicationUser")
@@ -527,6 +822,10 @@ namespace StoreManagement.Migrations
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("StoreManagement.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany("Products")
+                        .HasForeignKey("CreateBy");
                 });
 #pragma warning restore 612, 618
         }

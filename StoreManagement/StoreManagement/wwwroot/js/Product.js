@@ -34,12 +34,12 @@ $(document).ready(function () {
         {
             "columnDefs": [
                 {
-                    "targets": 6,
+                    "targets": 7,
                     "orderable": false,
                     "searchable": false
                 },
                 {
-                    "targets": 3,
+                    "targets": 4,
                     "orderable": false,
                     "searchable": false
                 }

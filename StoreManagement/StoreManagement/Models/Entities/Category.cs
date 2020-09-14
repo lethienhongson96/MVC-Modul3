@@ -11,6 +11,10 @@ namespace StoreManagement.Models.Entities
         public int Id { get; set; }
         public string Name { get; set; }
         public Status Status{ get; set; }
+        public DateTime CreateAt { get; set; }
+
+        public string CreateBy { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
 
         public List<Product> Products { get; set; }
     }

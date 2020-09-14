@@ -36,7 +36,7 @@
                 <td>@item.ShipperDate</td>
                 <td>
                     <a asp-controller="OrderDetail" asp-action="WatchOrderDetail" asp-route-id="@item.Id">
-                        @orderDetails.FindAll(el => el.OrderId == item.Id).Count
+                        @orderDetails.FindAll(el => el.OrderId == item.Id).Count Sản Phẩm
                     </a>
                 </td>
                 <td>

@@ -14,6 +14,7 @@ namespace StoreManagement.Services
     {
         private readonly StoreDbContext _context;
         private readonly IWebHostEnvironment _webHostEnvironment;
+        private const string ProductImageDefault = "default_product_image.png";
 
         public ProductService(StoreDbContext context, IWebHostEnvironment webHostEnvironment)
         {
@@ -28,10 +29,13 @@ namespace StoreManagement.Services
                 Name = productView.Name,
                 PricePerUnit = productView.Price,
                 CreateAt = productView.CreateAt,
+                CreateBy = productView.CreateBy,
                 Status = productView.Status,
-                ImagePath = UploadedFile(productView.IformfilePath),
                 CategoryId = productView.CategoryId
             };
+            if (productView.IformfilePath != null)
+                product.ImagePath = UploadedFile(productView.IformfilePath);
+
             _context.Products.Add(product);
 
             return (_context.SaveChanges());
@@ -43,9 +47,9 @@ namespace StoreManagement.Services
 
             if (product != null)
             {
-                if (!string.IsNullOrEmpty(product.ImagePath))
+                if (!string.IsNullOrEmpty(product.ImagePath) && product.ImagePath != ProductImageDefault)
                 {
-                    string DelPath = Path.Combine(_webHostEnvironment.WebRootPath, "Images", product.ImagePath);
+                    string DelPath = Path.Combine(_webHostEnvironment.WebRootPath, "Images/ProductImages", product.ImagePath);
                     File.Delete(DelPath);
                 }
                 _context.Products.Remove(product);
@@ -65,6 +69,7 @@ namespace StoreManagement.Services
                 Name = product.Name,
                 Price = product.PricePerUnit,
                 CreateAt = product.CreateAt,
+                CreateBy = product.CreateBy,
                 Status = product.Status,
                 CategoryId = product.CategoryId,
                 imgPath = product.ImagePath
@@ -73,10 +78,7 @@ namespace StoreManagement.Services
             return productview;
         }
 
-        public List<Product> GetProductList()
-        {
-            return (_context.Products.ToList());
-        }
+        public List<Product> GetProductList() => _context.Products.ToList();
 
         public int UpdateProduct(EditProductView productView)
         {
@@ -85,6 +87,7 @@ namespace StoreManagement.Services
             product.Name = productView.Name;
             product.CategoryId = productView.CategoryId;
             product.CreateAt = productView.CreateAt;
+            product.CreateBy = productView.CreateBy;
             product.PricePerUnit = productView.Price;
             product.Status = productView.Status;
 
@@ -92,9 +95,9 @@ namespace StoreManagement.Services
             {
                 product.ImagePath = UploadedFile(productView.IformfilePath);
 
-                if (!string.IsNullOrEmpty(productView.imgPath))
+                if (!string.IsNullOrEmpty(productView.imgPath) && productView.imgPath != ProductImageDefault)
                 {
-                    string DelPath = Path.Combine(_webHostEnvironment.WebRootPath, "Images", productView.imgPath);
+                    string DelPath = Path.Combine(_webHostEnvironment.WebRootPath, "Images/ProductImages", productView.imgPath);
                     File.Delete(DelPath);
                 }
             }
@@ -109,7 +112,7 @@ namespace StoreManagement.Services
 
             if (formFile != null)
             {
-                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Images");
+                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Images/ProductImages");
                 uniqueFileName = Guid.NewGuid().ToString() + "_" + formFile.FileName;
                 string filePath = Path.Combine(uploadsFolder, uniqueFileName);
                 using var fileStream = new FileStream(filePath, FileMode.Create);

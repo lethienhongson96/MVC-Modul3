@@ -1,13 +1,13 @@
 ﻿@model List<ApplicationUser>
 
-@inject StoreDbContext _context;
-@inject SignInManager<ApplicationUser> _signInManager;
+@inject StoreDbContext context;
+@inject SignInManager<ApplicationUser> signInManager;
 
 @{
-    var ProvinceList = _context.Province.ToList();
-    var DistrictList = _context.District.ToList();
-    var WardList = _context.Ward.ToList();
-    var AddressList = _context.Addresses.ToList();
+    var ProvinceList = context.Province.ToList();
+    var DistrictList = context.District.ToList();
+    var WardList = context.Ward.ToList();
+    var AddressList = context.Addresses.ToList();
 }
 <a style="float:right;color:forestgreen" asp-controller="Account" asp-action="Create">
     Tạo Tài Khoản Mới
@@ -30,7 +30,7 @@
         @foreach (var item in Model)
         {
             <tr>
-                @if (item.Id != _signInManager.UserManager.GetUserAsync(User).Result.Id)
+                @if (item.Id != signInManager.UserManager.GetUserAsync(User).Result.Id)
                 {
                     <td>@item.FullName</td>
                     <td>@item.Email</td>
@@ -45,7 +45,7 @@
                         @WardList.Find(war => war.Id == AddressList.Find(add => add.Id == item.AddressId).WardId).Name
                     </td>
                     <td>
-                        @_context.Addresses.ToList().Find(el => el.Id == item.AddressId).HouseNum
+                        @AddressList.Find(el => el.Id == item.AddressId).HouseNum
                     </td>
                     <td>
                         <img src="~/Images/UserImages/@item.Avatar" alt="Alternate Text" style="width:50px;height:50px"

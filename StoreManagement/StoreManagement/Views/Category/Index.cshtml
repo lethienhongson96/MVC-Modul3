@@ -1,9 +1,10 @@
 ﻿@model List<Category>
 
 @inject StoreDbContext context;
+@inject UserManager<ApplicationUser> userManager;
 @{
     var ProductList = context.Products.ToList();
-    int DefaultCategoryId = 20;
+    const int DefaultCategoryId = 4;
 }
 
 <a asp-action="Create" asp-controller="Category">Create</a>
@@ -13,6 +14,8 @@
         <tr>
             <th>Tên danh mục</th>
             <th>Trạng thái</th>
+            <th>Ngày tạo</th>
+            <th>Người tạo</th>
             <th>Danh sách sản phẩm</th>
             <th>Action</th>
         </tr>
@@ -24,9 +27,19 @@
             <tr>
                 <td>@item.Name</td>
                 <td>@item.Status</td>
+                <td>@item.CreateAt</td>
+                <td>
+                    <a asp-controller="Account" asp-action="UserDetail"
+                       asp-route-id="@userManager.FindByIdAsync(item.CreateBy).Result.Id">
+
+                        @userManager.FindByIdAsync(item.CreateBy).Result.FullName
+                        <img src="~/Images/UserImages/@userManager.FindByIdAsync(item.CreateBy).Result.Avatar"
+                             alt="Alternate Text" style="width:27px;height:27px" />
+                    </a>
+                </td>
                 <td>
                     <a asp-controller="Category" asp-action="WatchProducts" asp-route-id="@item.Id">
-                        @ProductList.FindAll(el => el.CategoryId == item.Id).Count Sản Phẩm(s)
+                        @ProductList.FindAll(el => el.CategoryId == item.Id).Count Sản Phẩm
                     </a>
                 </td>
                 @if (item.Id != DefaultCategoryId)
@@ -53,6 +66,8 @@
         <tr>
             <th>Tên danh mục</th>
             <th>Trạng thái</th>
+            <th>Ngày tạo</th>
+            <th>Người tạo</th>
             <th>Danh sách sản phẩm</th>
             <th>Action</th>
         </tr>

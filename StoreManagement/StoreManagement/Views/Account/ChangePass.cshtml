@@ -1,0 +1,30 @@
+﻿@model ChangePassUserView;
+@{
+}
+
+<form asp-controller="Account" asp-action="ChangePass">
+    <input type="hidden" asp-for="Id" />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group row">
+        <label for="inputPassword" class="col-sm-2 col-form-label">Mật Khẩu Hiện Tại</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" asp-for="CurrentPassword">
+            <span asp-validation-for="CurrentPassword" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="inputPassword" class="col-sm-2 col-form-label">Mật Khẩu Mới</label>
+        <div class="col-sm-10">
+            <input type="password" class="form-control" asp-for="NewPassword">
+            <span asp-validation-for="NewPassword" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="inputPassword" class="col-sm-2 col-form-label">Nhập Lại Mật Khẩu Mới</label>
+        <div class="col-sm-10">
+            <input type="password" class="form-control" asp-for="RepeatNewPassword">
+            <span asp-validation-for="RepeatNewPassword" class="text-danger"></span>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Đổi Mật Khẩu</button>
+</form>

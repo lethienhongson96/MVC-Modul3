@@ -6,6 +6,7 @@
 
 <form asp-controller="Product" asp-action="Edit" enctype="multipart/form-data">
     <input type="hidden" asp-for="id" />
+    <input type="hidden" asp-for="CreateBy" />
     <input type="hidden" asp-for="imgPath" />
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Tên sản phẩm</label>
@@ -50,7 +51,7 @@
             <label class="custom-file-label" for="customFile">Choose file</label>
         </div>
     </div>
-    <img src="~/Images/@Model.imgPath" alt="Alternate Text" style="width:50px;height:50px"/>
+    <img src="~/Images/ProductImages/@Model.imgPath" alt="Alternate Text" style="width:50px;height:50px"/>
     <button type="submit" class="btn btn-primary mb-2">Lưu</button>
 </form>
 

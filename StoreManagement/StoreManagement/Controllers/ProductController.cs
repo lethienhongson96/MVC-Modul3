@@ -31,13 +31,9 @@ namespace StoreManagement.Controllers
             if (ModelState.IsValid)
             {
                 if (_productService.CreateProduct(productView) > 0)
-                {
                     return RedirectToAction("Index", "Product");
-                }
                 else
-                {
                     ModelState.AddModelError("","something wrong");
-                }
             }
             return View();
         }

@@ -9,6 +9,7 @@ namespace StoreManagement.Models.ViewModels
         public string Name { get; set; }
         public double Price { get; set; }
         public DateTime CreateAt { get; set; }
+        public string CreateBy{ get; set; }
         public IFormFile IformfilePath { get; set; }
         public Status Status { get; set; }
 

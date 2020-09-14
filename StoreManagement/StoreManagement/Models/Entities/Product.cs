@@ -19,6 +19,9 @@ namespace StoreManagement.Models.Entities
         public int CategoryId { get; set; }
         public Category Category { get; set; }
 
+        public string CreateBy { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
+
         public ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

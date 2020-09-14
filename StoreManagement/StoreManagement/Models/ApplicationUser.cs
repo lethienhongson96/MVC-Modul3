@@ -16,5 +16,8 @@ namespace StoreManagement.Models
         public Address Address { get; set; }
 
         public ICollection<Order> Orders { get; set; }
+
+        public List<Category> Categories { get; set; }
+        public List<Product> Products { get; set; }
     }
 }

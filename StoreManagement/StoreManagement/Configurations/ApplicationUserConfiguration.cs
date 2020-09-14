@@ -13,13 +13,18 @@ namespace StoreManagement.Configurations
     {
         public void Configure(EntityTypeBuilder<ApplicationUser> builder)
         {
-            builder.Property(el => el.FullName).IsRequired().HasMaxLength(200);
-            builder.Property(el => el.Avatar).IsRequired(false).HasMaxLength(500);
+            builder.Property(el => el.FullName).IsRequired().HasMaxLength(100);
+
+            builder.Property(el => el.Avatar)
+                .IsRequired(false)
+                .HasMaxLength(200)
+                .HasDefaultValue("DefaultAvatar.png");
+
             builder.Property(el => el.AddressId).IsRequired();
 
             builder.HasOne(s => s.Address)
-            .WithOne(ad => ad.ApplicationUser)
-            .HasForeignKey<Address>(ad => ad.ApplicationUserId);
+                .WithOne(ad => ad.ApplicationUser)
+                .HasForeignKey<Address>(ad => ad.ApplicationUserId);
         }
     }
 }

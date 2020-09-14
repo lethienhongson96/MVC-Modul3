@@ -1,6 +1,8 @@
 ﻿
 @inject SignInManager<ApplicationUser> _signInManager;
-
+@{ 
+    var CurrentAccount = _signInManager.UserManager.GetUserAsync(User).Result;
+}
 <!doctype html>
 <html lang="en">
 
@@ -135,7 +137,7 @@
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="dropdownMenu3" aria-haspopup="true"
                                            aria-expanded="false">
                                             <div class="profile_img">
-                                                <img src="~/Images/UserImages/@_signInManager.UserManager.GetUserAsync(User).Result.Avatar"
+                                                <img src="~/Images/UserImages/@CurrentAccount.Avatar"
                                                      class="rounded-circle" alt="" />
                                                 <div class="user-active">
                                                     <span></span>
@@ -145,14 +147,25 @@
                                         <ul class="dropdown-menu drp-mnu" aria-labelledby="dropdownMenu3">
                                             <li class="user-info">
                                                 <h6 class="user-name">
-                                                    @_signInManager.UserManager.GetUserAsync(User).Result.FullName
+                                                    @CurrentAccount.FullName
                                                 </h6>
                                                 <span class="status ml-2">Available</span>
                                             </li>
-                                            <li> <a href="#"><i class="lnr lnr-user"></i>My Profile</a> </li>
+                                            <li>
+                                                <a asp-controller="Account" asp-action="UserDetail"
+                                                   asp-route-id="@CurrentAccount.Id">
+                                                    <i class="lnr lnr-user"></i>Hồ Sơ Của Tôi
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a asp-controller="Account" asp-action="ChangePass"
+                                                   asp-route-id="@CurrentAccount.Id">
+                                                    <i class="fa fa-lock"></i>Đổi Mật Khẩu
+                                                </a>
+                                            </li>
                                             <li class="logout">
                                                 <a asp-controller="Account" asp-action="Logout">
-                                                    <i class="fa fa-power-off"></i> Logout
+                                                    <i class="fa fa-power-off" style="color:red"></i> Logout
                                                 </a>
                                             </li>
                                         </ul>
@@ -258,7 +271,8 @@
     <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
     <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
     <script src="~/lib/bootbox/bootbox.min.js"></script>
-
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 

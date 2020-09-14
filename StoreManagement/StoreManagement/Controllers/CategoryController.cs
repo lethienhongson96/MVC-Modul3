@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components.RenderTree;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components.RenderTree;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 using StoreManagement.Models.Entities;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace StoreManagement.Controllers
 {
+    [Authorize]
     public class CategoryController : Controller
     {
         private readonly ICategoryService _categoryService;

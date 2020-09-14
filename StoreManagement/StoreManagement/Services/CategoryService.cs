@@ -8,7 +8,7 @@ namespace StoreManagement.Services
 {
     public class CategoryService : ICategoryService
     {
-        public const int DefaultCategoryId = 20;
+        private const int DefaultCategoryId = 4;
         private readonly StoreDbContext _context;
 
         public CategoryService(StoreDbContext context)
@@ -53,10 +53,12 @@ namespace StoreManagement.Services
 
             foreach (var item in products)
             {
-                var moveDefaultView = new MoveDefaultView();
-                moveDefaultView.Id = item.Id;
-                moveDefaultView.Name = item.Name;
-                moveDefaultView.CategoryId = item.CategoryId;
+                MoveDefaultView moveDefaultView = new MoveDefaultView
+                {
+                    Id = item.Id,
+                    Name = item.Name,
+                    CategoryId = item.CategoryId
+                };
                 moveDefaultViewList.Add(moveDefaultView);
             }
             return moveDefaultViewList;
@@ -89,14 +91,12 @@ namespace StoreManagement.Services
         public int UpdateCategory(Category category)
         {
             if (category == null)
-            {
                 return -1;
-            }
             var FindCategory = GetCategoryById(category.Id);
 
             FindCategory.Name = category.Name;
             FindCategory.Status = category.Status;
-            FindCategory.Products = category.Products;
+            FindCategory.CreateAt = category.CreateAt;
 
             _context.Update(FindCategory);
             return _context.SaveChanges();

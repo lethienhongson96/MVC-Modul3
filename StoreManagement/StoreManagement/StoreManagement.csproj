@@ -5,12 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20200909065254_CreateIdentityAndAddressTable.cs" />
-    <Compile Remove="Migrations\20200909065254_CreateIdentityAndAddressTable.Designer.cs" />
-    <Compile Remove="Migrations\20200909071153_AlterColunmInWardTable.cs" />
-    <Compile Remove="Migrations\20200909071153_AlterColunmInWardTable.Designer.cs" />
-    <Compile Remove="Migrations\20200909093751_ReStoreProvinceWardDistrict.cs" />
-    <Compile Remove="Migrations\20200909093751_ReStoreProvinceWardDistrict.Designer.cs" />
+    <Compile Remove="Migrations\20200914014152_SeedataUserRoleCategoryAndProduct.cs" />
+    <Compile Remove="Migrations\20200914014152_SeedataUserRoleCategoryAndProduct.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,6 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\Images\ProductImages\" />
     <Folder Include="wwwroot\Images\UserImages\" />
     <Folder Include="wwwroot\LoginPage\images\" />
   </ItemGroup>

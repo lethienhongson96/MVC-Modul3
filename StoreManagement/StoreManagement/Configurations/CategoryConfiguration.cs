@@ -19,6 +19,11 @@ namespace StoreManagement.Configurations
             builder.Property(x => x.Name).HasMaxLength(200).IsRequired();
 
             builder.Property(x => x.Status).IsRequired();
+
+            builder.HasOne(p => p.ApplicationUser)
+                .WithMany(b => b.Categories)
+                .HasForeignKey(p => p.CreateBy)
+                .IsRequired(false);
         }
     }
 }

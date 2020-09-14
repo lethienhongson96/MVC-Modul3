@@ -20,6 +20,7 @@ namespace StoreManagement.Controllers
         private readonly IWebHostEnvironment _hostEnvironment;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private const string AvatarUserDefault = "DefaultAvatar.png";
 
         public AccountController(StoreDbContext context, IWebHostEnvironment hostEnvironment,
             UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
@@ -30,12 +31,13 @@ namespace StoreManagement.Controllers
             _signInManager = signInManager;
         }
 
-        [Authorize]
         public IActionResult Index() => View(_userManager.Users.ToList());
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Create() => View();
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Create(ModelForCreate model)
         {
@@ -80,7 +82,7 @@ namespace StoreManagement.Controllers
         private string AvatarPathForUser(IFormFile iformfile_path)
         {
             if (iformfile_path == null)
-                return "DefaultAvatar.png";
+                return AvatarUserDefault;
             else
                 return UploadedFile(iformfile_path);
         }
@@ -94,18 +96,18 @@ namespace StoreManagement.Controllers
                 string uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "images/UserImages");
                 uniqueFileName = Guid.NewGuid().ToString() + "_" + iformfile_path.FileName;
                 string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    iformfile_path.CopyTo(fileStream);
-                }
+                using var fileStream = new FileStream(filePath, FileMode.Create);
+                iformfile_path.CopyTo(fileStream);
             }
             return uniqueFileName;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Login(string returnUrl = "") =>
             View(new LoginViewModel { ReturnUrl = returnUrl });
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
@@ -175,9 +177,9 @@ namespace StoreManagement.Controllers
             {
                 FindUser.Avatar = UploadedFile(UserModel.iformfile_path);
 
-                if (!string.IsNullOrEmpty(UserModel.Avatar_Path))
+                if (!string.IsNullOrEmpty(UserModel.Avatar_Path) && UserModel.Avatar_Path!= AvatarUserDefault)
                 {
-                    string DelPath = Path.Combine(_hostEnvironment.WebRootPath, "images", UserModel.Avatar_Path);
+                    string DelPath = Path.Combine(_hostEnvironment.WebRootPath, "Images/UserImages", UserModel.Avatar_Path);
                     System.IO.File.Delete(DelPath);
                 }
             }
@@ -200,7 +202,7 @@ namespace StoreManagement.Controllers
             _context.Remove(address);
             //Task.Run(async () => await _context.SaveChangesAsync());
 
-            if (existUser.Avatar!= "DefaultAvatar.png")
+            if (existUser.Avatar != AvatarUserDefault)
             {
                 string DelPath = Path.Combine(_hostEnvironment.WebRootPath, "Images/UserImages", existUser.Avatar);
                 System.IO.File.Delete(DelPath);
@@ -218,7 +220,51 @@ namespace StoreManagement.Controllers
             return RedirectToAction("Login", "Account");
         }
 
-        public IActionResult UserDetail(string id)=>
+        public IActionResult UserDetail(string id) =>
             View(_userManager.FindByIdAsync(id).Result);
+
+        [HttpGet]
+        public IActionResult ChangePass(string id)
+        {
+            ApplicationUser user = _userManager.FindByIdAsync(id).Result;
+            if (user == null)
+            {
+                ModelState.AddModelError("", "Tài khoản này không tồn tại");
+                return RedirectToAction("Index", "Home");
+            }
+            ChangePassUserView changePassUserView = new ChangePassUserView()
+            {
+                Id = user.Id,
+            };
+            return View(changePassUserView);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> ChangePass(ChangePassUserView changePassView)
+        {
+            if (ModelState.IsValid)
+            {
+                ApplicationUser user = _userManager.FindByIdAsync(changePassView.Id).Result;
+                if (user != null)
+                {
+                    var result = await _userManager.ChangePasswordAsync(user, changePassView.CurrentPassword, changePassView.NewPassword);
+
+                    if (result.Succeeded)
+                    {
+                        await _userManager.UpdateAsync(user);
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                        foreach (var item in result.Errors)
+                            ModelState.AddModelError("",item.Description);
+                }
+                else
+                    return View();
+            }
+
+            return View();
+        }
+
     }
 }
