@@ -19,8 +19,9 @@ Student.delete = function (id) {
                     method: "GET",
                     contentType: 'json',
                     success: function (data) {
+                        var ClassId = $("#ClassId").val();
                         if (data > 0) {
-                            window.location.href = "/ClassRoom/Index/";
+                            window.location.href = `/ClassRoom/WatchStudentsByClassId/${ClassId}`;
                         } else {
                             bootbox.dialog("Invalid Role Id");
                         }

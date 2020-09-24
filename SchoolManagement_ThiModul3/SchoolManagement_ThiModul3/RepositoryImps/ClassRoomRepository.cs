@@ -19,13 +19,15 @@ namespace SchoolManagement_ThiModul3.RepositoryImps
         }
         public List<ClassRoom> classRooms => context.ClassRooms.ToList();
 
-        public WatchStudentView GetStudentViewById(int id) {
+        public WatchStudentView GetStudentViewById(int id)
+        {
             var watchStudentView = new WatchStudentView()
             {
                 ClassId = id,
-                students = context.Students.Where(el => el.ClassRoomId == id).ToList()
+                students = context.Students.Where(el => el.ClassRoomId == id)
+                                           .OrderByDescending(el => el.Id).ToList()
             };
             return watchStudentView;
-        } 
+        }
     }
 }

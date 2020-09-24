@@ -10,7 +10,7 @@ namespace SchoolManagement_ThiModul3.Controllers
         private readonly IStudentRepository studentRepository;
         private readonly IClassRoomRepository classRoomRepository;
 
-        public StudentController(IStudentRepository studentRepository,IClassRoomRepository classRoomRepository)
+        public StudentController(IStudentRepository studentRepository, IClassRoomRepository classRoomRepository)
         {
             this.studentRepository = studentRepository;
             this.classRoomRepository = classRoomRepository;
@@ -21,27 +21,28 @@ namespace SchoolManagement_ThiModul3.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create(int id) => View(new CreateStudentView { ClassRoomId=id});
+        public IActionResult Create(int id) => View(new CreateStudentView { ClassRoomId = id });
 
         [HttpPost]
         public IActionResult Create(CreateStudentView createStudentView)
         {
-            Student student = new Student()
+            if (ModelState.IsValid)
             {
-                ClassRoomId= createStudentView.ClassRoomId,
-                FullName=createStudentView.FullName,
-                DoB=createStudentView.DoB,
-                Email=createStudentView.Email,
-                Gender=createStudentView.Gender
-            };
-            
-
-            if (studentRepository.CreateStudent(student) > 0)
-            {
-                var ModelForWatchStudentsByClassIdView = classRoomRepository.GetStudentViewById(student.ClassRoomId);
-                return View("Views/ClassRoom/WatchStudentsByClassId.cshtml", ModelForWatchStudentsByClassIdView);
+                Student student = new Student()
+                {
+                    ClassRoomId = createStudentView.ClassRoomId,
+                    FullName = createStudentView.FullName,
+                    DoB = createStudentView.DoB,
+                    Email = createStudentView.Email,
+                    Gender = createStudentView.Gender
+                };
+                if (studentRepository.CreateStudent(student) > 0)
+                {
+                    var ModelForWatchStudentsByClassIdView = classRoomRepository.GetStudentViewById(student.ClassRoomId);
+                    return View("Views/ClassRoom/WatchStudentsByClassId.cshtml", ModelForWatchStudentsByClassIdView);
+                }
             }
-            return View();
+            return View(createStudentView);
         }
 
         [Route("/Student/Delete/{id}")]
@@ -59,12 +60,14 @@ namespace SchoolManagement_ThiModul3.Controllers
         [HttpPost]
         public IActionResult Edit(Student student)
         {
-            int result = studentRepository.EditStudent(student);
-            var ModelForWatchStudentsByClassIdView = classRoomRepository.GetStudentViewById(student.ClassRoomId);
+            if (ModelState.IsValid)
+            {
+                int result = studentRepository.EditStudent(student);
+                var ModelForWatchStudentsByClassIdView = classRoomRepository.GetStudentViewById(student.ClassRoomId);
 
-            if (result > 0)
-                return View("Views/ClassRoom/WatchStudentsByClassId.cshtml", ModelForWatchStudentsByClassIdView);
-
+                if (result > 0)
+                    return View("Views/ClassRoom/WatchStudentsByClassId.cshtml", ModelForWatchStudentsByClassIdView);
+            }
             return View(student);
         }
 

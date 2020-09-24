@@ -31,9 +31,9 @@ namespace SchoolManagement_ThiModul3.RepositoryImps
 
         public int EditStudent(Student student)
         {
-            if (context.Students.Contains(student))
+            if (context.Students.Any(el => el.Id == student.Id))
                 context.Update(student);
-                
+
             return context.SaveChanges();
         }
 
