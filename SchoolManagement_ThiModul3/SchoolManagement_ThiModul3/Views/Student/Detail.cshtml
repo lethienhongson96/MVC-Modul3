@@ -1,0 +1,25 @@
+﻿
+@model Student
+@inject AppDbContext context;
+
+<ul class="list-group list-group-flush">
+    <li class="list-group-item">
+        Email: @Model.Email
+    </li>
+    <li class="list-group-item">
+        Họ Và Tên: @Model.FullName
+    </li>
+
+    <li class="list-group-item">
+        Số Điện Thoại:
+        @Model.DoB.ToShortDateString();
+    </li>
+    <li class="list-group-item">
+        Giới Tính:
+        @Model.Gender
+    </li>
+    <li class="list-group-item">
+        Lớp:
+        @context.ClassRooms.FirstOrDefault(el => el.Id == Model.ClassRoomId).ClassName
+    </li>
+</ul>
