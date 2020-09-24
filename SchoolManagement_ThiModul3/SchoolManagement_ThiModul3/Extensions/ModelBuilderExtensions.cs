@@ -18,10 +18,6 @@ namespace SchoolManagement_ThiModul3.Extensions
                 new ClassRoom { Id = 4, ClassName = "C08" },
                 new ClassRoom { Id = 5, ClassName = "C09" }
                 );
-
-           /* modelBuilder.Entity<Student>().HasData(
-                new Student { Id=1,FullName="Lê thiên hồng sơn",DoB=DateTime.Parse("27/11/1996")}
-                );*/
         }
     }
 }

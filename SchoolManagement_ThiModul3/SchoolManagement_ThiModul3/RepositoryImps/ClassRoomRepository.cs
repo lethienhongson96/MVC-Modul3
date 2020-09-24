@@ -1,5 +1,6 @@
 ﻿using SchoolManagement_ThiModul3.Models;
 using SchoolManagement_ThiModul3.Models.Entities;
+using SchoolManagement_ThiModul3.Models.ViewModel;
 using SchoolManagement_ThiModul3.Repositories;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,18 @@ namespace SchoolManagement_ThiModul3.RepositoryImps
         }
         public List<ClassRoom> classRooms => context.ClassRooms.ToList();
 
-        public List<Student> GetStudentsById(int id) => context.Students.ToList().FindAll(el => el.ClassRoomId == id);
+        public List<Student> GetStudentsByClassId(int id)
+        {
+            return context.Students.Where(_ => _.ClassRoomId == id).ToList();
+        }
+
+        public WatchStudentView GetStudentViewById(int id) {
+            var watchStudentView = new WatchStudentView()
+            {
+                ClassId = id,
+                students = context.Students.Where(el => el.ClassRoomId == id).ToList()
+            };
+            return watchStudentView;
+        } 
     }
 }

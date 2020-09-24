@@ -1,4 +1,5 @@
 ﻿using SchoolManagement_ThiModul3.Models.Entities;
+using SchoolManagement_ThiModul3.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,8 @@ namespace SchoolManagement_ThiModul3.Repositories
     {
         List<ClassRoom> classRooms { get; }
 
-        List<Student> GetStudentsById(int id);
+        WatchStudentView GetStudentViewById(int id);
+
+        List<Student> GetStudentsByClassId(int id);
     }
 }

@@ -31,16 +31,12 @@ namespace SchoolManagement_ThiModul3.RepositoryImps
 
         public int EditStudent(Student student)
         {
-            Student FindStudent = context.Students.FirstOrDefault(el => el.Id == student.Id);
-
-            if (FindStudent != null)
-                context.Update(FindStudent);
+            if (context.Students.Contains(student))
+                context.Update(student);
+                
             return context.SaveChanges();
         }
 
-        public Student GetStudentById(int id)
-        {
-            return context.Students.FirstOrDefault(el => el.Id == id);
-        }
+        public Student GetStudentById(int id) => context.Students.FirstOrDefault(el => el.Id == id);
     }
 }

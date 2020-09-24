@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SchoolManagement_ThiModul3.Repositories;
 
 namespace SchoolManagement_ThiModul3.Controllers
@@ -22,7 +18,7 @@ namespace SchoolManagement_ThiModul3.Controllers
 
         public IActionResult WatchStudentsByClassId(int id)
         {
-            return View(classRoomRepository.GetStudentsById(id));
+            return View(classRoomRepository.GetStudentViewById(id));
         }
     }
 }

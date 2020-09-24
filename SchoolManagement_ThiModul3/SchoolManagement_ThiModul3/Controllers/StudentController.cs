@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SchoolManagement_ThiModul3.Models.Entities;
+using SchoolManagement_ThiModul3.Models.ViewModel;
 using SchoolManagement_ThiModul3.Repositories;
 
 namespace SchoolManagement_ThiModul3.Controllers
@@ -7,10 +8,12 @@ namespace SchoolManagement_ThiModul3.Controllers
     public class StudentController : Controller
     {
         private readonly IStudentRepository studentRepository;
+        private readonly IClassRoomRepository classRoomRepository;
 
-        public StudentController(IStudentRepository studentRepository)
+        public StudentController(IStudentRepository studentRepository,IClassRoomRepository classRoomRepository)
         {
             this.studentRepository = studentRepository;
+            this.classRoomRepository = classRoomRepository;
         }
         public IActionResult Index()
         {
@@ -18,16 +21,26 @@ namespace SchoolManagement_ThiModul3.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create() => View();
+        public IActionResult Create(int id) => View(new CreateStudentView { ClassRoomId=id});
 
         [HttpPost]
-        public IActionResult Create(Student student)
+        public IActionResult Create(CreateStudentView createStudentView)
         {
-            int result = studentRepository.CreateStudent(student);
+            Student student = new Student()
+            {
+                ClassRoomId= createStudentView.ClassRoomId,
+                FullName=createStudentView.FullName,
+                DoB=createStudentView.DoB,
+                Email=createStudentView.Email,
+                Gender=createStudentView.Gender
+            };
+            
 
-            if (result > 0)
-                return RedirectToAction("Index","ClassRoom");
-
+            if (studentRepository.CreateStudent(student) > 0)
+            {
+                var ModelForWatchStudentsByClassIdView = classRoomRepository.GetStudentViewById(student.ClassRoomId);
+                return View("Views/ClassRoom/WatchStudentsByClassId.cshtml", ModelForWatchStudentsByClassIdView);
+            }
             return View();
         }
 
@@ -47,9 +60,10 @@ namespace SchoolManagement_ThiModul3.Controllers
         public IActionResult Edit(Student student)
         {
             int result = studentRepository.EditStudent(student);
+            var ModelForWatchStudentsByClassIdView = classRoomRepository.GetStudentViewById(student.ClassRoomId);
 
             if (result > 0)
-                return RedirectToAction("Index", "ClassRoom");
+                return View("Views/ClassRoom/WatchStudentsByClassId.cshtml", ModelForWatchStudentsByClassIdView);
 
             return View(student);
         }
