@@ -19,11 +19,6 @@ namespace SchoolManagement_ThiModul3.RepositoryImps
         }
         public List<ClassRoom> classRooms => context.ClassRooms.ToList();
 
-        public List<Student> GetStudentsByClassId(int id)
-        {
-            return context.Students.Where(_ => _.ClassRoomId == id).ToList();
-        }
-
         public WatchStudentView GetStudentViewById(int id) {
             var watchStudentView = new WatchStudentView()
             {

@@ -12,7 +12,5 @@ namespace SchoolManagement_ThiModul3.Repositories
         List<ClassRoom> classRooms { get; }
 
         WatchStudentView GetStudentViewById(int id);
-
-        List<Student> GetStudentsByClassId(int id);
     }
 }
