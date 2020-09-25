@@ -16,9 +16,6 @@ namespace SchoolManagement_ThiModul3.Controllers
             return View(classRoomRepository.classRooms);
         }
 
-        public IActionResult WatchStudentsByClassId(int id)
-        {
-            return View(classRoomRepository.GetStudentViewById(id));
-        }
+        public IActionResult WatchStudentsByClassId(int id) => View(classRoomRepository.GetStudentViewById(id));
     }
 }

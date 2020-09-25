@@ -29,11 +29,20 @@ namespace SchoolManagement_ThiModul3.RepositoryImps
             return context.SaveChanges();
         }
 
-        public int EditStudent(Student student)
+        public int EditStudent(Student Model)
         {
-            if (context.Students.Any(el => el.Id == student.Id))
-                context.Update(student);
+            Student student = context.Students.FirstOrDefault(el => el.Id == Model.Id);
 
+            if (context.Students.Contains(student))
+            {
+                student.FullName = Model.FullName;
+                student.DoB = Model.DoB;
+                student.Gender = Model.Gender;
+                student.Email = Model.Email;
+                student.ClassRoomId = Model.ClassRoomId;
+
+                context.Update(student);
+            }
             return context.SaveChanges();
         }
 

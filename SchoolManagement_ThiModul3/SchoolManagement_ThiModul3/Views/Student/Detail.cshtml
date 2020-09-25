@@ -4,22 +4,22 @@
 
 <ul class="list-group list-group-flush">
     <li class="list-group-item">
-        Email: @Model.Email
+        Email: <span class="text-info">@Model.Email</span>
     </li>
     <li class="list-group-item">
-        Họ Và Tên: @Model.FullName
+        Họ Và Tên: <span class="text-info">@Model.FullName</span>
     </li>
 
     <li class="list-group-item">
         Ngày sinh:
-        @Model.DoB.ToShortDateString();
+        <span class="text-info">@Model.DoB.ToShortDateString();</span>
     </li>
     <li class="list-group-item">
         Giới Tính:
-        @Model.Gender
+        <span class="text-info">@Model.Gender</span>
     </li>
     <li class="list-group-item">
         Lớp:
-        @context.ClassRooms.FirstOrDefault(el => el.Id == Model.ClassRoomId).ClassName
-    </li>
+        <span class="text-info">@context.ClassRooms.FirstOrDefault(el => el.Id == Model.ClassRoomId).ClassName</span>
+</li>
 </ul>
