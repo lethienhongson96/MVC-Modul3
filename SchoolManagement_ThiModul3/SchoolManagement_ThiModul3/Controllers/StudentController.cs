@@ -46,16 +46,10 @@ namespace SchoolManagement_ThiModul3.Controllers
         }
 
         [Route("/Student/Delete/{id}")]
-        public IActionResult Delete(int id)
-        {
-            return Json(studentRepository.DeleteStudent(id));
-        }
+        public IActionResult Delete(int id) => Json(studentRepository.DeleteStudent(id));
 
         [HttpGet]
-        public IActionResult Edit(int id)
-        {
-            return View(studentRepository.GetStudentById(id));
-        }
+        public IActionResult Edit(int id) => View(studentRepository.GetStudentById(id));
 
         [HttpPost]
         public IActionResult Edit(Student student)
@@ -67,13 +61,12 @@ namespace SchoolManagement_ThiModul3.Controllers
 
                 if (result > 0)
                     return View("Views/ClassRoom/WatchStudentsByClassId.cshtml", ModelForWatchStudentsByClassIdView);
+
+                ModelState.AddModelError("", "Something wrong");
             }
             return View(student);
         }
 
-        public IActionResult Detail(int id)
-        {
-            return View(studentRepository.GetStudentById(id));
-        }
+        public IActionResult Detail(int id) => View(studentRepository.GetStudentById(id));
     }
 }

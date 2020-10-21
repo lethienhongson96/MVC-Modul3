@@ -13,7 +13,7 @@ namespace SchoolManagement_ThiModul3.Controllers
         }
         public IActionResult Index()
         {
-            return View(classRoomRepository.classRooms);
+            return View(classRoomRepository.ClassRooms);
         }
 
         public IActionResult WatchStudentsByClassId(int id) => View(classRoomRepository.GetStudentViewById(id));

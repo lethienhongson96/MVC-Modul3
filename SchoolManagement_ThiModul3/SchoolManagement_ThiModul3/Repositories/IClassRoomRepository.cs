@@ -9,7 +9,7 @@ namespace SchoolManagement_ThiModul3.Repositories
 {
     public interface IClassRoomRepository
     {
-        List<ClassRoom> classRooms { get; }
+        List<ClassRoom> ClassRooms { get; }
 
         WatchStudentView GetStudentViewById(int id);
     }

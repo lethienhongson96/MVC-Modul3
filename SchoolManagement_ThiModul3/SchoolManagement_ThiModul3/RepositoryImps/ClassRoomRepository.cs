@@ -2,10 +2,8 @@
 using SchoolManagement_ThiModul3.Models.Entities;
 using SchoolManagement_ThiModul3.Models.ViewModel;
 using SchoolManagement_ThiModul3.Repositories;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace SchoolManagement_ThiModul3.RepositoryImps
 {
@@ -17,7 +15,7 @@ namespace SchoolManagement_ThiModul3.RepositoryImps
         {
             this.context = context;
         }
-        public List<ClassRoom> classRooms => context.ClassRooms.ToList();
+        public List<ClassRoom> ClassRooms => context.ClassRooms.ToList();
 
         public WatchStudentView GetStudentViewById(int id)
         {
@@ -25,7 +23,8 @@ namespace SchoolManagement_ThiModul3.RepositoryImps
             {
                 ClassId = id,
                 students = context.Students.Where(el => el.ClassRoomId == id)
-                                           .OrderByDescending(el => el.Id).ToList()
+                                           .OrderByDescending(el => el.Id)
+                                           .ToList()
             };
             return watchStudentView;
         }
